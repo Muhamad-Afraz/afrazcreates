@@ -8,7 +8,7 @@ const GLYPHS = "@#$%&*!?/<>[]{}()01";
 const DECODE_AT = 900;
 const SUBTITLE_AT = 1750;
 const FLASH_AT = 2250;
-const GONE_AT = 1050;
+const GONE_AT = 2550;
 
 const DROPS = Array.from({ length: 42 }, (_, i) => ({
   left: ((i * 73) % 97) + 1,
