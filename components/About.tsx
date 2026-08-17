@@ -14,10 +14,10 @@ export function AboutContent() {
         </div>
       </Reveal>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 grid-rows-2 gap-4">
         {site.stats.map((stat, i) => (
-          <Reveal key={stat.label} delay={i * 0.1}>
-            <div className="card rounded-2xl p-5 text-center transition-colors duration-300 hover:border-primary/40">
+          <Reveal key={stat.label} delay={i * 0.1} className="h-full">
+            <div className="card h-full rounded-2xl p-5 text-center transition-colors duration-300 hover:border-primary/40">
               <div className="text-3xl font-extrabold sm:text-4xl">
                 <span className="gradient-text">
                   <Counter value={stat.value} suffix={stat.suffix} />

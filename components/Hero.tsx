@@ -322,7 +322,7 @@ export default function Hero({
         style={{ opacity: bgWhiteOpacity }}
       />
 
-      <div className="absolute left-1/2 top-[41%] -translate-x-1/2 -translate-y-1/2">
+      <div className="absolute left-1/2 top-[55%] sm:top-[41%] -translate-x-1/2 -translate-y-1/2">
         <motion.div
           style={{ x, y, scale }}
           className="w-[min(300px,72vw)] will-change-transform"

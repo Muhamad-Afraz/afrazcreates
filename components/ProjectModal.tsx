@@ -257,14 +257,14 @@ export default function ProjectModal({
             transition={{ duration: 0.4, ease: [0.21, 0.47, 0.32, 0.98] }}
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="relative flex flex-1 flex-col overflow-hidden rounded-2xl bg-surface/95 backdrop-blur-xl p-8 sm:p-10">
+            <div className="relative flex flex-1 flex-col overflow-hidden rounded-2xl bg-surface/95 backdrop-blur-xl p-4 sm:p-10">
               <div className="relative z-10 flex h-full flex-1 flex-col min-h-0">
-                <div className="mb-8 flex items-start justify-between">
+                <div className="mb-4 sm:mb-8 flex items-start justify-between">
                   <div>
-                    <h2 className="text-[35px] font-bold text-white">
+                    <h2 className="text-2xl sm:text-[35px] font-bold text-white">
                       All <span className="gradient-text">Projects</span>
                     </h2>
-                    <p className="mt-1 font-mono text-[16px] text-slate-500">
+                    <p className="mt-1 font-mono text-sm sm:text-[16px] text-slate-500">
                       {projects.length} project{projects.length !== 1 && "s"} total
                     </p>
                   </div>
@@ -280,7 +280,7 @@ export default function ProjectModal({
                   </motion.button>
                 </div>
 
-                <div className="mb-8 flex flex-wrap gap-2">
+                <div className="mb-4 sm:mb-8 flex flex-wrap gap-2">
                   <button
                     type="button"
                     onClick={() => setActiveCategory(null)}
