@@ -73,30 +73,21 @@ function GlowCard({
 
         <div className="mt-6 flex items-center gap-5">
           {project.status === "live" && project.live && (
-            <a
-              href={project.live}
-              target="_blank"
-              rel="noreferrer"
-              onClick={(e) => e.stopPropagation()}
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-primary opacity-80 transition-all duration-300 hover:opacity-100 hover:drop-shadow-[0_0_8px_rgba(163,230,53,0.5)]"
+            <span
+              className="inline-flex items-center gap-1.5 text-[17px] font-medium text-primary"
             >
-              <span className="h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_6px_#a3e635]" />
               Live
               <ArrowUpRightIcon className="h-4 w-4" />
-            </a>
+            </span>
           )}
           {project.status === "building" && project.live && (
-            <a
-              href={project.live}
-              target="_blank"
-              rel="noreferrer"
-              onClick={(e) => e.stopPropagation()}
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-yellow-400 opacity-80 transition-all duration-300 hover:opacity-100"
+            <span
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-yellow-400 opacity-80"
             >
               <span className="h-1.5 w-1.5 rounded-full bg-yellow-400 shadow-[0_0_6px_#facc15]" />
               Building
               <ArrowUpRightIcon className="h-4 w-4" />
-            </a>
+            </span>
           )}
           {project.status === "building" && !project.live && (
             <span className="inline-flex items-center gap-1.5 text-sm font-medium text-yellow-400 opacity-60">
