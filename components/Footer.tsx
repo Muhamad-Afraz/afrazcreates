@@ -46,7 +46,7 @@ function SocialLink({ href, label, Icon }: Social) {
   const [hovered, setHovered] = useState(false);
 
   const classes =
-    "group relative flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 text-slate-400 transition-all duration-300 hover:border-primary/50 hover:text-primary hover:shadow-[0_0_18px_rgba(163,230,53,0.35)]";
+    "group relative flex min-h-[44px] min-w-[44px] items-center justify-center rounded-xl border border-white/10 text-slate-400 transition-all duration-300 hover:border-primary/50 hover:text-primary hover:shadow-[0_0_18px_rgba(163,230,53,0.35)]";
 
   const labelEl = (
     <AnimatePresence>{hovered && <LabelTooltip label={label} />}</AnimatePresence>
@@ -100,7 +100,7 @@ function BackToTopButton({
         e.preventDefault();
         onNavigate("home");
       }}
-      className="group relative flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 text-slate-400 transition-all duration-300 hover:border-secondary/50 hover:text-secondary hover:shadow-[0_0_18px_rgba(132,204,22,0.35)]"
+      className="group relative flex min-h-[44px] min-w-[44px] items-center justify-center rounded-xl border border-white/10 text-slate-400 transition-all duration-300 hover:border-secondary/50 hover:text-secondary hover:shadow-[0_0_18px_rgba(132,204,22,0.35)]"
     >
       <ArrowUpIcon className="h-5 w-5" />
       <AnimatePresence>{hovered && <LabelTooltip label="Back to top" />}</AnimatePresence>
@@ -114,7 +114,7 @@ export default function Footer({
   onNavigate: (target: Page, sectionId?: string) => void;
 }) {
   return (
-    <footer className="border-t border-white/5 bg-black/20 backdrop-blur-sm">
+    <footer className="border-t border-white/5 bg-black/20 pb-[env(safe-area-inset-bottom)] backdrop-blur-sm">
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-6 py-10 sm:flex-row">
         <p className="font-mono text-sm text-slate-500">
           © {new Date().getFullYear()}{" "}
@@ -122,7 +122,7 @@ export default function Footer({
           Tailwind.
         </p>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-5">
           {socials.map((social) => (
             <SocialLink key={social.label} {...social} />
           ))}

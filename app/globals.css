@@ -247,6 +247,13 @@ body::after {
   box-shadow: 0 0 26px rgba(132, 204, 22, 0.5), inset 0 0 14px rgba(132, 204, 22, 0.2);
 }
 
+@media (pointer: coarse) {
+  .cursor-dot,
+  .cursor-ring {
+    display: none;
+  }
+}
+
 .caret {
   display: inline-block;
   width: 3px;

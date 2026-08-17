@@ -322,7 +322,7 @@ export default function Hero({
         style={{ opacity: bgWhiteOpacity }}
       />
 
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+      <div className="absolute left-1/2 top-[41%] -translate-x-1/2 -translate-y-1/2">
         <motion.div
           style={{ x, y, scale }}
           className="w-[min(300px,72vw)] will-change-transform"
@@ -343,7 +343,7 @@ export default function Hero({
           scrubRef.current = el;
           onScrubContainer?.(el);
         }}
-        className="relative h-screen overflow-y-auto overscroll-contain scroll-auto"
+        className="relative h-screen overflow-y-auto overscroll-contain scroll-auto pb-[env(safe-area-inset-bottom)]"
       >
         <div>
           <div className="relative h-[300vh]">

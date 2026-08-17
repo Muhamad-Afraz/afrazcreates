@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ParticleBackground from "@/components/ParticleBackground";
@@ -16,9 +16,28 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+export const viewport: Viewport = {
+  viewportFit: "cover",
+};
+
 export const metadata: Metadata = {
+  metadataBase: new URL("https://afrazcreates.vercel.app"),
   title: `${site.name} | Developer Portfolio`,
   description: site.tagline,
+  icons: {
+    icon: "/favicon.svg",
+  },
+  openGraph: {
+    title: `${site.name} | Developer Portfolio`,
+    description: site.tagline,
+    images: ["/opengraph-image"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${site.name} | Developer Portfolio`,
+    description: site.tagline,
+    images: ["/opengraph-image"],
+  },
 };
 
 export default function RootLayout({
