@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import type { MouseEvent, ReactNode } from "react";
+import type { MouseEvent, ReactNode, TouchEvent } from "react";
 import {
   motion,
   useMotionTemplate,
@@ -48,11 +48,26 @@ export default function TiltCard({ children, className = "", max = 10 }: TiltCar
     py.set(0.5);
   };
 
+  const onTouchMove = (e: TouchEvent<HTMLDivElement>) => {
+    const el = ref.current;
+    if (!el || !e.touches[0]) return;
+    const rect = el.getBoundingClientRect();
+    px.set((e.touches[0].clientX - rect.left) / rect.width);
+    py.set((e.touches[0].clientY - rect.top) / rect.height);
+  };
+
+  const onTouchEnd = () => {
+    px.set(0.5);
+    py.set(0.5);
+  };
+
   return (
     <motion.div
       ref={ref}
       onMouseMove={onMouseMove}
       onMouseLeave={onMouseLeave}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
       style={{ rotateX, rotateY, transformStyle: "preserve-3d", perspective: 900 }}
       className={`group relative ${className}`}
     >

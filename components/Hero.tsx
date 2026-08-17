@@ -343,13 +343,13 @@ export default function Hero({
           scrubRef.current = el;
           onScrubContainer?.(el);
         }}
-        className="relative h-screen overflow-y-auto overscroll-contain scroll-auto pb-[env(safe-area-inset-bottom)]"
+        className="relative h-screen overflow-y-auto overscroll-contain scroll-auto no-scrollbar pb-[env(safe-area-inset-bottom)]"
       >
         <div>
           <div className="relative h-[300vh]">
             <section
               id="home"
-              className="sticky top-0 flex h-screen items-center overflow-hidden px-6 py-28"
+              className="sticky top-0 flex h-screen items-start sm:items-center overflow-hidden px-6 pt-24 pb-12 sm:py-28"
             >
               <motion.div
                 style={{ opacity: heroOpacity }}

@@ -10,7 +10,9 @@ export type EducationEntry = {
 export type Project = {
   title: string;
   description: string;
-  tags: string[];
+  category: "personal" | "business" | "other";
+  tag: string;
+  status?: "live" | "building" | "planning";
   live?: string;
   code?: string;
 };
@@ -34,9 +36,9 @@ export const site: SiteData = {
     "A developer who loves turning ideas into fast, accessible and delightfully interactive web experiences.",
   roles: ["Web Developer", "Creative Designs", "UI/UX Designer"],
   about: [
-    "Hi, I'm Afraz — a developer who believes websites should feel alive. I spend my days building web apps that don't just work, but delight: smooth animations, snappy interactions, and clean, readable code under the hood.",
-    "I care about the whole journey — from the first wireframe sketch to the final deployment. I love collaborating, shipping fast, and obsessing over the details most people never notice (and that's exactly the point).",
-    "When I'm not coding, you'll find me exploring new tech, contributing to open source, or experimenting with generative art.",
+    "Hi, I'm Afraz — a developer who believes websites should feel alive. I build web apps that don't just work, but feel great to use: smooth animations, snappy interactions, and clean, thoughtful code under the hood.",
+    "I care about the entire journey — from the first wireframe sketch to the final deployment. I love collaborating, shipping fast, and obsessing over the little details most people never notice (and that's exactly the point).",
+    "When I'm not coding, you'll find me exploring new tech, experimenting with generative art, or building something just because I can.",
   ],
   stats: [
     { value: 3, suffix: "+", label: "Projects Built" },
@@ -46,24 +48,54 @@ export const site: SiteData = {
   ],
   projects: [
     {
-      title: "Portfolio Website",
+      title: "My Portfolio",
       description:
-        "A personal portfolio with a scroll-driven laptop reveal, custom cursor, particles and smooth section transitions.",
-      tags: ["Next.js", "Tailwind CSS", "Framer Motion"],
-      live: "",
+        "My personal portfolio about me, my creations and my skills — designed to showcase what I do and how I think as a developer.",
+      category: "personal",
+      tag: "Portfolio",
+      status: "live",
+      live: "https://afrazcreates.vercel.app",
       code: "",
     },
     {
-      title: "Project One",
-      description: "Short description of what this project does and why it was built.",
-      tags: ["Next.js", "Tailwind CSS"],
+      title: "Coffee Shop",
+      description: "A modern coffee shop website designed with a clean interface, smooth interactions, and a warm, inviting experience.",
+      category: "other",
+      tag: "Web App",
+      status: "building",
       live: "",
       code: "",
     },
     {
       title: "Project Two",
       description: "Short description of what this project does and why it was built.",
-      tags: ["JavaScript", "CSS"],
+      category: "other",
+      tag: "Creative",
+      status: "planning",
+      live: "",
+      code: "",
+    },
+    {
+      title: "Project 4",
+      description: "Short description of what this project does and why it was built.",
+      category: "other",
+      tag: "Web App",
+      live: "",
+      code: "",
+    },
+    {
+      title: "Project 5",
+      description: "Short description of what this project does and why it was built.",
+      category: "other",
+      tag: "Creative",
+      live: "",
+      code: "",
+    },
+    {
+      title: "Project 6",
+      description: "Short description of what this project does and why it was built.",
+      category: "other",
+      tag: "Creative",
       live: "",
       code: "",
     },

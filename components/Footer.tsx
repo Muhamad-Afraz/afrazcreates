@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpIcon, InstagramIcon, MailIcon } from "./icons";
 import { site } from "@/data/site";
 
-type Page = "home" | "work";
+type Page = "home";
 
 type Social = {
   href?: string;
@@ -15,7 +15,7 @@ type Social = {
 };
 
 const socials: Social[] = [
-  { label: "Instagram", Icon: InstagramIcon },
+  { href: site.socials.instagram, label: "Instagram", Icon: InstagramIcon },
   { href: `mailto:${site.socials.email}`, label: "Email", Icon: MailIcon },
 ];
 
