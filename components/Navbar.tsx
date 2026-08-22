@@ -77,12 +77,13 @@ export default function Navbar({
           ))}
         </nav>
 
-        <button
-          type="button"
-          onClick={() => setOpen((v) => !v)}
-          aria-label="Toggle menu"
-          className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 rounded-lg border border-white/10 text-white md:hidden"
-        >
+        <div className="flex items-center gap-3">
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            aria-label="Toggle menu"
+            className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 rounded-lg border border-white/10 text-white md:hidden"
+          >
           <motion.span
             animate={open ? { rotate: 45, y: 4 } : { rotate: 0, y: 0 }}
             className="block h-0.5 w-5 bg-primary"
@@ -92,6 +93,7 @@ export default function Navbar({
             className="block h-0.5 w-5 bg-secondary"
           />
         </button>
+        </div>
       </div>
 
       <AnimatePresence>

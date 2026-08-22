@@ -16,6 +16,25 @@
 :root {
   --background: #050a02;
   --foreground: #e2e8f0;
+  --section-glow-opacity: 0.035;
+  --section-glow-hue: 80;
+  --section-glow-spread: 55%;
+}
+
+@property --section-glow-opacity {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0.035;
+}
+@property --section-glow-hue {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 80;
+}
+@property --section-glow-spread {
+  syntax: "<percentage>";
+  inherits: true;
+  initial-value: 55%;
 }
 
 html {
@@ -88,10 +107,11 @@ body::before {
   inset: 0;
   z-index: -2;
   pointer-events: none;
+  transition: --section-glow-opacity 1.2s ease, --section-glow-hue 1.2s ease, --section-glow-spread 1.2s ease;
   background:
     radial-gradient(
-      ellipse 55% 40% at var(--glow-x-1) var(--glow-y-1),
-      rgba(163, 230, 53, 0.035),
+      ellipse var(--section-glow-spread) 40% at var(--glow-x-1) var(--glow-y-1),
+      hsla(var(--section-glow-hue), 70%, 55%, var(--section-glow-opacity)),
       transparent 60%
     ),
     radial-gradient(
@@ -255,7 +275,8 @@ body::after {
 }
 
 .cursor-dot,
-.cursor-ring {
+.cursor-ring,
+.cursor-trail {
   position: fixed;
   top: 0;
   left: 0;
@@ -285,9 +306,18 @@ body::after {
   box-shadow: 0 0 26px rgba(132, 204, 22, 0.5), inset 0 0 14px rgba(132, 204, 22, 0.2);
 }
 
+.cursor-trail {
+  width: 4px;
+  height: 4px;
+  margin: -2px 0 0 -2px;
+  background: rgba(163, 230, 53, 0.45);
+  box-shadow: 0 0 6px rgba(163, 230, 53, 0.4);
+}
+
 @media (pointer: coarse) {
   .cursor-dot,
-  .cursor-ring {
+  .cursor-ring,
+  .cursor-trail {
     display: none;
   }
 }
@@ -568,6 +598,26 @@ body::after {
   display: none;
 }
 
+.scroll-progress-bar {
+  background: linear-gradient(90deg, #a3e635, #bef264);
+  box-shadow: 0 0 10px rgba(163, 230, 53, 0.6), 0 0 20px rgba(163, 230, 53, 0.3);
+  transform-origin: left;
+  will-change: width;
+  transition: width 0.1s ease-out;
+  position: relative;
+}
+.scroll-progress-bar::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: -2px;
+  width: 8px;
+  height: 7px;
+  border-radius: 50%;
+  background: #a3e635;
+  box-shadow: 0 0 12px #a3e635, 0 0 24px rgba(163, 230, 53, 0.5);
+}
+
 .card-title-shimmer {
   background: linear-gradient(
     110deg,
@@ -583,6 +633,24 @@ body::after {
   color: transparent;
   transition: background-position 0.6s ease;
 }
+
+/* ---------- Skill Badge Float ---------- */
+
+@keyframes skill-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.skill-float {
+  animation: skill-float 3s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skill-float {
+    animation: none;
+  }
+}
+
 .project-card-glow:hover .card-title-shimmer {
   animation: shimmer 1.5s ease-in-out;
 }

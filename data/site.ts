@@ -24,6 +24,7 @@ export type SiteData = {
   roles: string[];
   about: string[];
   stats: { value: number; suffix: string; label: string }[];
+  skills: string[];
   projects: Project[];
   education: EducationEntry[];
   socials: { email: string; instagram: string; github: string; linkedin: string };
@@ -45,6 +46,20 @@ export const site: SiteData = {
     { value: 12, suffix: "+", label: "Tools & Technologies" },
     { value: 3, suffix: "+", label: "Certificates" },
     { value: 1, suffix: "+", label: "Month of Experience" },
+  ],
+  skills: [
+    "React",
+    "Next.js",
+    "TypeScript",
+    "Tailwind CSS",
+    "Framer Motion",
+    "Node.js",
+    "JavaScript",
+    "HTML/CSS",
+    "Git",
+    "Vercel",
+    "Figma",
+    "Python",
   ],
   projects: [
     {

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ParticleBackground from "@/components/ParticleBackground";
+import NoiseOverlay from "@/components/NoiseOverlay";
 import CustomCursor from "@/components/CustomCursor";
 import Preloader from "@/components/Preloader";
 import { site } from "@/data/site";
@@ -51,6 +52,7 @@ export default function RootLayout({
       <body className="flex min-h-full flex-col text-slate-200">
         <Preloader />
         <ParticleBackground />
+        <NoiseOverlay />
         <CustomCursor />
         <main className="relative z-10 flex-1">{children}</main>
       </body>

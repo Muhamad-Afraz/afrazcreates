@@ -1,11 +1,12 @@
 import { useState } from "react";
 import type { Project } from "@/data/site";
-import Reveal from "./ui/Reveal";
 import TiltCard from "./ui/TiltCard";
 import SectionHeading from "./ui/SectionHeading";
+import SectionReveal, { cascadeItem } from "./ui/SectionReveal";
 import ProjectModal from "./ProjectModal";
 import { ArrowUpRightIcon } from "./icons";
 import { site } from "@/data/site";
+import { motion } from "framer-motion";
 
 function StatusBadge({ project }: { project: Project }) {
   const statusConfig = {
@@ -31,13 +32,37 @@ export default function Projects() {
 
   return (
     <section id="projects" className="mx-auto max-w-6xl px-6 py-12 sm:py-16">
-      <SectionHeading index="03" label="Things I've built" title="Featured" highlight="Projects" />
+      <SectionReveal variant="cascade">
+        <SectionHeading index="03" label="Things I've built" title="Featured" highlight="Projects" />
 
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {site.projects.slice(0, 3).map((project, i) => (
-          <Reveal key={project.title} delay={i * 0.1}>
-            {project.live ? (
-              <a href={project.live} target="_blank" rel="noreferrer" aria-label={`View project: ${project.title}`} className="block h-full">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3" style={{ perspective: 1000 }}>
+          {site.projects.slice(0, 3).map((project) => (
+            <motion.div key={project.title} variants={cascadeItem}>
+              {project.live ? (
+                <a href={project.live} target="_blank" rel="noreferrer" aria-label={`View project: ${project.title}`} className="block h-full">
+                  <TiltCard className="card glow-border flex h-full flex-col rounded-2xl p-7 transition-colors duration-300 hover:border-primary/40">
+                    <h3 className="text-lg font-bold text-white">{project.title}</h3>
+                    <p className="mt-3 flex-1 text-sm leading-relaxed text-slate-400">
+                      {project.description}
+                    </p>
+
+                    <ul className="mt-5 flex flex-wrap gap-2">
+                      <li className="rounded-md bg-white/5 px-2.5 py-1 text-xs text-slate-300">
+                        {project.category.charAt(0).toUpperCase() + project.category.slice(1)}
+                      </li>
+                      {project.tag && (
+                      <li className="rounded-md bg-white/5 px-2.5 py-1 text-xs text-slate-300">
+                        {project.tag}
+                      </li>
+                      )}
+                    </ul>
+
+                    <div className="mt-6 flex items-center gap-5">
+                      {project.status && <StatusBadge project={project} />}
+                    </div>
+                  </TiltCard>
+                </a>
+              ) : (
                 <TiltCard className="card glow-border flex h-full flex-col rounded-2xl p-7 transition-colors duration-300 hover:border-primary/40">
                   <h3 className="text-lg font-bold text-white">{project.title}</h3>
                   <p className="mt-3 flex-1 text-sm leading-relaxed text-slate-400">
@@ -59,33 +84,11 @@ export default function Projects() {
                     {project.status && <StatusBadge project={project} />}
                   </div>
                 </TiltCard>
-              </a>
-            ) : (
-              <TiltCard className="card glow-border flex h-full flex-col rounded-2xl p-7 transition-colors duration-300 hover:border-primary/40">
-                <h3 className="text-lg font-bold text-white">{project.title}</h3>
-                <p className="mt-3 flex-1 text-sm leading-relaxed text-slate-400">
-                  {project.description}
-                </p>
-
-                <ul className="mt-5 flex flex-wrap gap-2">
-                  <li className="rounded-md bg-white/5 px-2.5 py-1 text-xs text-slate-300">
-                    {project.category.charAt(0).toUpperCase() + project.category.slice(1)}
-                  </li>
-                  {project.tag && (
-                  <li className="rounded-md bg-white/5 px-2.5 py-1 text-xs text-slate-300">
-                    {project.tag}
-                  </li>
-                  )}
-                </ul>
-
-                <div className="mt-6 flex items-center gap-5">
-                  {project.status && <StatusBadge project={project} />}
-                </div>
-              </TiltCard>
-            )}
-          </Reveal>
-        ))}
-      </div>
+              )}
+            </motion.div>
+          ))}
+        </div>
+      </SectionReveal>
 
       <div className="mt-10 flex justify-center">
         <button

@@ -9,6 +9,8 @@ import Education from "@/components/Education";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import ScrollProgress from "@/components/ScrollProgress";
+import ParallaxTilt from "@/components/ParallaxTilt";
 
 const SECTION_IDS = ["about", "projects", "education", "contact"] as const;
 
@@ -17,34 +19,37 @@ export default function Home() {
   const lenisRef = useRef<Lenis | null>(null);
   const [activeId, setActiveId] = useState("home");
 
-  const scrollToSection = useCallback((id: string, behavior: ScrollBehavior = "smooth") => {
+  const scrollToSection = useCallback((id: string) => {
     const container = containerRef.current;
     const lenis = lenisRef.current;
     if (!container) return;
 
     if (id === "home") {
       if (lenis) lenis.scrollTo(0, { duration: 1.2, easing: (t) => 1 - Math.pow(1 - t, 3) });
-      else container.scrollTo({ top: 0, behavior });
+      else container.scrollTo({ top: 0, behavior: "smooth" });
       return;
     }
 
     const el = container.querySelector<HTMLElement>(`#${id}`);
     if (!el) return;
 
-    const offset =
-      el.getBoundingClientRect().top - container.getBoundingClientRect().top + container.scrollTop;
-    const max = container.scrollHeight - container.clientHeight;
-    const target = Math.min(Math.max(0, offset - 80), max);
+    // Walk up from el to container, summing offsetTops for accurate position
+    let target = 0;
+    let node: HTMLElement | null = el;
+    while (node && node !== container) {
+      target += node.offsetTop;
+      node = node.offsetParent as HTMLElement;
+    }
+    target = Math.max(0, target - 80);
 
-    if (behavior === "smooth") {
-      if (lenis) lenis.scrollTo(target, { duration: 1.2, easing: (t) => 1 - Math.pow(1 - t, 3) });
-      else container.scrollTo({ top: target, behavior: "smooth" });
+    if (lenis) {
+      lenis.scrollTo(target, { duration: 1.2, easing: (t) => 1 - Math.pow(1 - t, 3) });
     } else {
-      container.scrollTop = target;
+      container.scrollTo({ top: target, behavior: "smooth" });
     }
   }, []);
 
-  const goTo = useCallback((id: string) => scrollToSection(id, "smooth"), [scrollToSection]);
+  const goTo = useCallback((id: string) => scrollToSection(id), [scrollToSection]);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -85,6 +90,36 @@ export default function Home() {
         const el = container.querySelector<HTMLElement>(`#${id}`);
         if (el && el.offsetTop - 200 <= top) current = id;
       }
+
+      const root = document.documentElement;
+      switch (current) {
+        case "home":
+          root.style.setProperty("--section-glow-opacity", "0.04");
+          root.style.setProperty("--section-glow-hue", "80");
+          root.style.setProperty("--section-glow-spread", "55%");
+          break;
+        case "about":
+          root.style.setProperty("--section-glow-opacity", "0.03");
+          root.style.setProperty("--section-glow-hue", "85");
+          root.style.setProperty("--section-glow-spread", "50%");
+          break;
+        case "projects":
+          root.style.setProperty("--section-glow-opacity", "0.045");
+          root.style.setProperty("--section-glow-hue", "75");
+          root.style.setProperty("--section-glow-spread", "60%");
+          break;
+        case "education":
+          root.style.setProperty("--section-glow-opacity", "0.025");
+          root.style.setProperty("--section-glow-hue", "90");
+          root.style.setProperty("--section-glow-spread", "45%");
+          break;
+        case "contact":
+          root.style.setProperty("--section-glow-opacity", "0.05");
+          root.style.setProperty("--section-glow-hue", "70");
+          root.style.setProperty("--section-glow-spread", "65%");
+          break;
+      }
+
       setActiveId(current);
     };
 
@@ -96,15 +131,18 @@ export default function Home() {
   return (
     <>
       <Navbar activeId={activeId} onNavigate={goTo} />
-      <div className="relative h-screen overflow-hidden">
-        <Hero onScrubContainer={(el) => (containerRef.current = el)} onNavigate={goTo} lenisRef={lenisRef}>
-          <About />
-          <Projects />
-          <Education />
-          <Contact />
-          <Footer onNavigate={goTo} />
-        </Hero>
-      </div>
+      <ScrollProgress containerRef={containerRef} />
+      <ParallaxTilt>
+        <div className="relative h-screen overflow-hidden" style={{ perspective: 1200 }}>
+          <Hero onScrubContainer={(el) => (containerRef.current = el)} onNavigate={goTo} lenisRef={lenisRef}>
+            <About />
+            <Projects />
+            <Education />
+            <Contact />
+            <Footer onNavigate={goTo} />
+          </Hero>
+        </div>
+      </ParallaxTilt>
     </>
   );
 }
