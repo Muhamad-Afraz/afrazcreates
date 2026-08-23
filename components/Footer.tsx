@@ -3,7 +3,7 @@
 import { useState } from "react";
 import type { ComponentType, SVGProps } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUpIcon, InstagramIcon, MailIcon } from "./icons";
+import { ArrowUpIcon, GithubIcon, InstagramIcon, MailIcon } from "./icons";
 import { site } from "@/data/site";
 
 type Page = "home";
@@ -16,6 +16,7 @@ type Social = {
 
 const socials: Social[] = [
   { href: site.socials.instagram, label: "Instagram", Icon: InstagramIcon },
+  { href: site.socials.github, label: "GitHub", Icon: GithubIcon },
   { href: `mailto:${site.socials.email}`, label: "Email", Icon: MailIcon },
 ];
 
@@ -116,18 +117,17 @@ export default function Footer({
   return (
     <footer className="border-t border-white/5 bg-black/20 pb-[env(safe-area-inset-bottom)] backdrop-blur-sm">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-10">
+        <p className="font-mono text-sm text-slate-500">
+          © {new Date().getFullYear()}{" "}
+          <span className="text-slate-300">{site.name}</span> — ALL RIGHTS RESERVED
+        </p>
+
         <div className="flex items-center gap-5">
           <BackToTopButton onNavigate={onNavigate} />
           {socials.map((social) => (
             <SocialLink key={social.label} {...social} />
           ))}
         </div>
-
-        <p className="font-mono text-sm text-slate-500">
-          © {new Date().getFullYear()}{" "}
-          <span className="text-slate-300">{site.name}</span>. Built with Next.js &amp;
-          Tailwind.
-        </p>
       </div>
     </footer>
   );

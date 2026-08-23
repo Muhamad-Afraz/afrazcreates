@@ -2,7 +2,7 @@ import Reveal from "./ui/Reveal";
 import TiltCard from "./ui/TiltCard";
 import SectionHeading from "./ui/SectionHeading";
 import SectionReveal from "./ui/SectionReveal";
-import { ArrowUpRightIcon, InstagramIcon, MailIcon } from "./icons";
+import { ArrowUpRightIcon, GithubIcon, InstagramIcon, MailIcon } from "./icons";
 import { site } from "@/data/site";
 
 export default function Contact() {
@@ -23,6 +23,14 @@ export default function Contact() {
       hover: "hover:border-secondary/50",
       glow: "group-hover:shadow-[0_0_40px_rgba(132,204,22,0.25)]",
     },
+    {
+      href: site.socials.github,
+      title: "GitHub",
+      value: `@${site.socials.github.split("/").filter(Boolean).pop()}`,
+      Icon: GithubIcon,
+      hover: "hover:border-primary/50",
+      glow: "group-hover:shadow-[0_0_40px_rgba(163,230,53,0.25)]",
+    },
   ];
 
   return (
@@ -37,7 +45,7 @@ export default function Contact() {
           </p>
         </Reveal>
 
-        <div className="mx-auto mt-8 grid max-w-3xl gap-6 sm:grid-cols-2">
+        <div className="mx-auto mt-8 grid max-w-3xl gap-6 sm:grid-cols-3">
           {channels.map((channel, i) => (
             <Reveal key={channel.title} delay={i * 0.12}>
               <a

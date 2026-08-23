@@ -1,26 +1,10 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Reveal from "./ui/Reveal";
 import Counter from "./ui/Counter";
 import SectionHeading from "./ui/SectionHeading";
 import SectionReveal from "./ui/SectionReveal";
 import { site } from "@/data/site";
-
-function SkillBadge({ skill, index }: { skill: string; index: number }) {
-  return (
-    <motion.span
-      initial={{ opacity: 0, scale: 0.8, y: 10 }}
-      whileInView={{ opacity: 1, scale: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.4, delay: index * 0.04 }}
-      className="skill-float inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/5 px-3.5 py-1.5 text-xs text-primary/80 transition-colors duration-300 hover:bg-primary/10 hover:text-primary hover:border-primary/40 hover:shadow-[0_0_12px_rgba(163,230,53,0.15)]"
-      style={{ animationDelay: `${index * 0.2}s` }}
-    >
-      {skill}
-    </motion.span>
-  );
-}
 
 function StatCard({ stat, index }: { stat: { value: number; suffix: string; label: string }; index: number }) {
   return (
@@ -39,7 +23,6 @@ function StatCard({ stat, index }: { stat: { value: number; suffix: string; labe
 
 export default function About() {
   const stats = site.stats;
-  const skills = site.skills;
 
   return (
     <section id="about" className="mx-auto max-w-6xl px-6 py-12 sm:py-16">
@@ -65,20 +48,6 @@ export default function About() {
             ))}
           </div>
         </div>
-
-        {/* Tech Stack — Full Width */}
-        <Reveal delay={0.15} className="mt-6">
-          <div className="card rounded-2xl p-6 sm:p-8">
-            <p className="mb-5 font-mono text-xs uppercase tracking-[0.2em] text-secondary">
-              Technologies I work with
-            </p>
-            <div className="flex flex-wrap gap-2.5">
-              {skills.map((skill, i) => (
-                <SkillBadge key={skill} skill={skill} index={i} />
-              ))}
-            </div>
-          </div>
-        </Reveal>
       </SectionReveal>
     </section>
   );

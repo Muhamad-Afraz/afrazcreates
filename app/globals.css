@@ -171,7 +171,7 @@ body::after {
 .card {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(6px);
 }
 
 .glow-border {
@@ -298,8 +298,7 @@ body::after {
   margin: -18px 0 0 -18px;
   border: 1.5px solid rgba(163, 230, 53, 0.55);
   box-shadow: 0 0 22px rgba(163, 230, 53, 0.3), inset 0 0 12px rgba(163, 230, 53, 0.12);
-  transition: scale 0.25s ease, border-color 0.25s ease;
-  mix-blend-mode: screen;
+  transition: border-color 0.25s ease;
 }
 .cursor-active {
   border-color: rgba(132, 204, 22, 0.85);

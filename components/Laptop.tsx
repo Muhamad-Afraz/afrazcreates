@@ -37,7 +37,7 @@ export default function Laptop({ lidAngle, className = "" }: LaptopProps) {
           style={{ opacity: closedOpacity, scale: closedScale }}
         >
           <Image
-            src="/images/Laptop%20Closed.png"
+            src="/images/laptop-closed.webp"
             alt="Closed laptop"
             fill
             sizes="(max-width: 768px) 72vw, 300px"
@@ -52,7 +52,7 @@ export default function Laptop({ lidAngle, className = "" }: LaptopProps) {
           style={{ opacity: openOpacity, y: openY, scale: openScale }}
         >
           <Image
-            src="/images/Laptop_Opened-removebg-preview%20(1).png"
+            src="/images/laptop-open.webp"
             alt="Open laptop"
             fill
             sizes="(max-width: 768px) 72vw, 300px"

@@ -12,6 +12,10 @@ type Particle = {
 };
 
 const COLORS = ["#a3e635", "#84cc16", "#bef264"];
+const LINK_DIST = 120;
+const LINK_DIST_SQ = LINK_DIST * LINK_DIST;
+const REPEL_RADIUS = 140;
+const REPEL_RADIUS_SQ = REPEL_RADIUS * REPEL_RADIUS;
 
 export default function ParticleBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -26,8 +30,9 @@ export default function ParticleBackground() {
     let height = 0;
     let particles: Particle[] = [];
     let raf = 0;
+    let running = false;
     const mouse = { x: -9999, y: -9999 };
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const resize = () => {
@@ -52,14 +57,14 @@ export default function ParticleBackground() {
 
     const draw = () => {
       ctx.clearRect(0, 0, width, height);
-      const linkDist = 120;
 
       for (const p of particles) {
         const dx = p.x - mouse.x;
         const dy = p.y - mouse.y;
-        const dist = Math.hypot(dx, dy);
-        if (dist < 140 && dist > 0.01) {
-          const force = ((140 - dist) / 140) * 0.02;
+        const dSq = dx * dx + dy * dy;
+        if (dSq < REPEL_RADIUS_SQ && dSq > 0.01) {
+          const dist = Math.sqrt(dSq);
+          const force = ((REPEL_RADIUS - dist) / REPEL_RADIUS) * 0.02;
           p.vx += (dx / dist) * force;
           p.vy += (dy / dist) * force;
         }
@@ -74,8 +79,9 @@ export default function ParticleBackground() {
 
         p.vx *= 0.995;
         p.vy *= 0.995;
-        const speed = Math.hypot(p.vx, p.vy);
-        if (speed > 0.6) {
+        const speedSq = p.vx * p.vx + p.vy * p.vy;
+        if (speedSq > 0.36) {
+          const speed = Math.sqrt(speedSq);
           p.vx = (p.vx / speed) * 0.6;
           p.vy = (p.vy / speed) * 0.6;
         }
@@ -87,15 +93,19 @@ export default function ParticleBackground() {
         ctx.fill();
       }
 
+      particles.sort((a, b) => a.x - b.x);
       ctx.lineWidth = 1;
+      ctx.strokeStyle = "#a3e635";
       for (let i = 0; i < particles.length; i++) {
+        const a = particles[i];
         for (let j = i + 1; j < particles.length; j++) {
-          const a = particles[i];
           const b = particles[j];
-          const d = Math.hypot(a.x - b.x, a.y - b.y);
-          if (d < linkDist) {
-            ctx.strokeStyle = "#a3e635";
-            ctx.globalAlpha = (1 - d / linkDist) * 0.35;
+          const dx = b.x - a.x;
+          if (dx >= LINK_DIST) break;
+          const dy = b.y - a.y;
+          const dSq = dx * dx + dy * dy;
+          if (dSq < LINK_DIST_SQ) {
+            ctx.globalAlpha = (1 - Math.sqrt(dSq) / LINK_DIST) * 0.35;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
             ctx.lineTo(b.x, b.y);
@@ -108,7 +118,21 @@ export default function ParticleBackground() {
 
     const loop = () => {
       draw();
+      if (running) raf = requestAnimationFrame(loop);
+    };
+
+    const startLoop = () => {
+      if (running || prefersReduced) return;
+      running = true;
       raf = requestAnimationFrame(loop);
+    };
+    const stopLoop = () => {
+      running = false;
+      cancelAnimationFrame(raf);
+    };
+    const onVisibility = () => {
+      if (document.hidden) stopLoop();
+      else startLoop();
     };
 
     const onMouseMove = (e: MouseEvent) => {
@@ -126,13 +150,15 @@ export default function ParticleBackground() {
     if (prefersReduced) {
       draw();
     } else {
-      raf = requestAnimationFrame(loop);
+      startLoop();
+      document.addEventListener("visibilitychange", onVisibility);
       window.addEventListener("mousemove", onMouseMove);
       window.addEventListener("mouseout", onMouseLeave);
     }
 
     return () => {
-      cancelAnimationFrame(raf);
+      stopLoop();
+      document.removeEventListener("visibilitychange", onVisibility);
       window.removeEventListener("resize", resize);
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("mouseout", onMouseLeave);

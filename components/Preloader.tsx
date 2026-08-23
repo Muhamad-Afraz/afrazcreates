@@ -168,7 +168,10 @@ function DecodeStage({ enabled }: { enabled: boolean }) {
   );
 }
 
+const SESSION_KEY = "afraz-intro-seen";
+
 export default function Preloader() {
+  const [mounted, setMounted] = useState(false);
   const [stage, setStage] = useState(0);
   const [gone, setGone] = useState(false);
   const [reduced] = useState(
@@ -178,6 +181,14 @@ export default function Preloader() {
   );
 
   useEffect(() => {
+    if (sessionStorage.getItem(SESSION_KEY)) return;
+    sessionStorage.setItem(SESSION_KEY, "1");
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+
     document.body.style.overflow = "hidden";
 
     if (reduced) {
@@ -206,13 +217,13 @@ export default function Preloader() {
       window.clearTimeout(t4);
       document.body.style.overflow = "";
     };
-  }, [reduced]);
+  }, [mounted, reduced]);
 
   const decoding = stage >= 1;
   const flashing = stage >= 3;
   const enabled = !gone && !reduced;
 
-  if (gone) return null;
+  if (!mounted || gone) return null;
 
   return (
     <motion.div

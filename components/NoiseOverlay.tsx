@@ -2,6 +2,10 @@
 
 import { useEffect, useRef } from "react";
 
+const SIZE = 256;
+const FRAME_COUNT = 8;
+const FRAME_MS = 90;
+
 export default function NoiseOverlay() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -10,18 +14,15 @@ export default function NoiseOverlay() {
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    let raf = 0;
-    const w = 256;
-    const h = 256;
-    canvas.width = w;
-    canvas.height = h;
+    canvas.width = SIZE;
+    canvas.height = SIZE;
 
-    const draw = () => {
-      const imageData = ctx.createImageData(w, h);
-      const data = imageData.data;
+    const frames: ImageData[] = [];
+    for (let f = 0; f < FRAME_COUNT; f++) {
+      const img = ctx.createImageData(SIZE, SIZE);
+      const data = img.data;
       for (let i = 0; i < data.length; i += 4) {
         const v = Math.random() * 255;
         data[i] = v;
@@ -29,12 +30,16 @@ export default function NoiseOverlay() {
         data[i + 2] = v;
         data[i + 3] = 18;
       }
-      ctx.putImageData(imageData, 0, 0);
-      raf = requestAnimationFrame(draw);
-    };
+      frames.push(img);
+    }
 
-    draw();
-    return () => cancelAnimationFrame(raf);
+    let frame = 0;
+    const timer = window.setInterval(() => {
+      ctx.putImageData(frames[frame], 0, 0);
+      frame = (frame + 1) % FRAME_COUNT;
+    }, FRAME_MS);
+
+    return () => window.clearInterval(timer);
   }, []);
 
   return (

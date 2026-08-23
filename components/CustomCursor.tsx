@@ -3,6 +3,8 @@
 import { useEffect, useRef } from "react";
 
 const TRAIL_LENGTH = 12;
+const JUMP_LIMIT = 500;
+const CONFIRM_WINDOW_MS = 140;
 
 export default function CustomCursor() {
   const dotRef = useRef<HTMLDivElement>(null);
@@ -17,30 +19,56 @@ export default function CustomCursor() {
     let my = 0;
     let rx = 0;
     let ry = 0;
+    let rs = 1;
     let raf = 0;
+    let running = false;
+    let hasMoved = false;
+    let lastInteractive: boolean | null = null;
+    let lastTrailTime = 0;
+    let trailIndex = 0;
+    let targetEl: EventTarget | null = null;
+    let lx = 0;
+    let ly = 0;
+    let pendingJump: { x: number; y: number; t: number } | null = null;
 
     const trail: { x: number; y: number; opacity: number; scale: number }[] = [];
     for (let i = 0; i < TRAIL_LENGTH; i++) {
       trail.push({ x: 0, y: 0, opacity: 0, scale: 1 });
     }
-    let trailIndex = 0;
-    let lastTrailTime = 0;
 
     const onMove = (e: MouseEvent) => {
-      mx = e.clientX;
-      my = e.clientY;
-
-      if (dotRef.current) {
-        dotRef.current.style.transform = `translate(${mx}px, ${my}px)`;
-      }
-      if (ringRef.current) {
-        const target = e.target as HTMLElement;
-        const interactive = target.closest("a, button, input, textarea, [data-cursor]");
-        ringRef.current.style.scale = interactive ? "1.8" : "1";
-        ringRef.current.classList.toggle("cursor-active", Boolean(interactive));
-      }
-
+      const x = e.clientX;
+      const y = e.clientY;
       const now = performance.now();
+
+      if (!hasMoved) {
+        lx = x;
+        ly = y;
+        mx = x;
+        my = y;
+        rx = x;
+        ry = y;
+        hasMoved = true;
+      } else {
+        const jump = Math.hypot(x - lx, y - ly);
+        if (jump > JUMP_LIMIT) {
+          const corroborated =
+            pendingJump !== null &&
+            now - pendingJump.t <= CONFIRM_WINDOW_MS &&
+            Math.hypot(x - pendingJump.x, y - pendingJump.y) <= JUMP_LIMIT;
+          if (!corroborated) {
+            pendingJump = { x, y, t: now };
+            return;
+          }
+        }
+        pendingJump = null;
+        lx = x;
+        ly = y;
+        mx = x;
+        my = y;
+      }
+      targetEl = e.target;
+
       if (now - lastTrailTime > 16) {
         const t = trail[trailIndex];
         t.x = mx;
@@ -53,11 +81,24 @@ export default function CustomCursor() {
     };
 
     const loop = () => {
+      if (dotRef.current) {
+        dotRef.current.style.transform = `translate3d(${mx}px, ${my}px, 0)`;
+      }
+
       rx += (mx - rx) * 0.16;
       ry += (my - ry) * 0.16;
+
+      const interactive =
+        targetEl instanceof Element &&
+        Boolean(targetEl.closest("a, button, input, textarea, [data-cursor]"));
+      if (interactive !== lastInteractive) {
+        lastInteractive = interactive;
+        ringRef.current?.classList.toggle("cursor-active", interactive);
+      }
+      rs += ((interactive ? 1.8 : 1) - rs) * 0.22;
+
       if (ringRef.current) {
-        ringRef.current.style.left = `${rx}px`;
-        ringRef.current.style.top = `${ry}px`;
+        ringRef.current.style.transform = `translate3d(${rx}px, ${ry}px, 0) scale(${rs})`;
       }
 
       for (let i = 0; i < TRAIL_LENGTH; i++) {
@@ -68,7 +109,7 @@ export default function CustomCursor() {
         if (t.opacity > 0.02) {
           t.opacity *= 0.88;
           t.scale *= 0.95;
-          el.style.transform = `translate(${t.x}px, ${t.y}px) scale(${t.scale})`;
+          el.style.transform = `translate3d(${t.x}px, ${t.y}px, 0) scale(${t.scale})`;
           el.style.opacity = `${t.opacity}`;
           el.style.display = "block";
         } else {
@@ -76,15 +117,31 @@ export default function CustomCursor() {
         }
       }
 
+      if (running) raf = requestAnimationFrame(loop);
+    };
+
+    const startLoop = () => {
+      if (running) return;
+      running = true;
       raf = requestAnimationFrame(loop);
+    };
+    const stopLoop = () => {
+      running = false;
+      cancelAnimationFrame(raf);
+    };
+    const onVisibility = () => {
+      if (document.hidden) stopLoop();
+      else startLoop();
     };
 
     window.addEventListener("mousemove", onMove);
-    raf = requestAnimationFrame(loop);
+    document.addEventListener("visibilitychange", onVisibility);
+    startLoop();
 
     return () => {
       window.removeEventListener("mousemove", onMove);
-      cancelAnimationFrame(raf);
+      document.removeEventListener("visibilitychange", onVisibility);
+      stopLoop();
     };
   }, []);
 

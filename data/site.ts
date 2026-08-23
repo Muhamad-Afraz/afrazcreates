@@ -1,12 +1,3 @@
-export type EducationEntry = {
-  school: string;
-  degree: string;
-  type: string;
-  period: string;
-  description: string;
-  skills: string[];
-};
-
 export type Project = {
   title: string;
   description: string;
@@ -17,6 +8,20 @@ export type Project = {
   code?: string;
 };
 
+export type TechCategoryId = "frontend" | "backend" | "ai" | "data" | "tools";
+
+export type TechItem = {
+  name: string;
+  icon: string;
+};
+
+export type TechCategory = {
+  id: TechCategoryId;
+  label: string;
+  color: string;
+  items: TechItem[];
+};
+
 export type SiteData = {
   name: string;
   firstName: string;
@@ -24,9 +29,9 @@ export type SiteData = {
   roles: string[];
   about: string[];
   stats: { value: number; suffix: string; label: string }[];
-  skills: string[];
+  techStack: TechCategory[];
   projects: Project[];
-  education: EducationEntry[];
+  showcaseUrl: string;
   socials: { email: string; instagram: string; github: string; linkedin: string };
 };
 
@@ -43,25 +48,67 @@ export const site: SiteData = {
   ],
   stats: [
     { value: 3, suffix: "+", label: "Projects Built" },
-    { value: 12, suffix: "+", label: "Tools & Technologies" },
+    { value: 18, suffix: "+", label: "Tools & Technologies" },
     { value: 3, suffix: "+", label: "Certificates" },
     { value: 1, suffix: "+", label: "Month of Experience" },
   ],
-  skills: [
-    "React",
-    "Next.js",
-    "TypeScript",
-    "Tailwind CSS",
-    "Framer Motion",
-    "Node.js",
-    "JavaScript",
-    "HTML/CSS",
-    "Git",
-    "Vercel",
-    "Figma",
-    "Python",
+  techStack: [
+    {
+      id: "frontend",
+      label: "Frontend",
+      color: "#22d3ee",
+      items: [
+        { name: "React", icon: "react" },
+        { name: "Next.js", icon: "nextjs" },
+        { name: "TypeScript", icon: "typescript" },
+        { name: "Tailwind CSS", icon: "tailwind" },
+      ],
+    },
+    {
+      id: "backend",
+      label: "Backend",
+      color: "#fbbf24",
+      items: [
+        { name: "Node.js", icon: "nodejs" },
+        { name: "Express", icon: "express" },
+        { name: "Supabase", icon: "supabase" },
+        { name: "PostgreSQL", icon: "postgresql" },
+      ],
+    },
+    {
+      id: "ai",
+      label: "AI & Agents",
+      color: "#a78bfa",
+      items: [
+        { name: "LangGraph", icon: "langgraph" },
+        { name: "LangChain", icon: "langchain" },
+        { name: "Multi-Agent AI", icon: "multiagent" },
+        { name: "RAG", icon: "rag" },
+      ],
+    },
+    {
+      id: "data",
+      label: "Data",
+      color: "#34d399",
+      items: [
+        { name: "VectorDB", icon: "vectordb" },
+        { name: "Embeddings", icon: "embeddings" },
+      ],
+    },
+    {
+      id: "tools",
+      label: "Tools",
+      color: "#fb7185",
+      items: [
+        { name: "Git", icon: "git" },
+        { name: "Vercel", icon: "vercel" },
+        { name: "Docker", icon: "docker" },
+        { name: "Figma", icon: "figma" },
+      ],
+    },
   ],
   projects: [
+    // TODO: replace placeholder projects below with real ones (title, description, live URL, code URL)
     {
       title: "My Portfolio",
       description:
@@ -115,11 +162,13 @@ export const site: SiteData = {
       code: "",
     },
   ],
-  education: [],
+  // TODO: replace with the URL of your all-projects website
+  showcaseUrl: "https://example.com",
   socials: {
     email: "kmafraz12@gmail.com",
     instagram: "https://instagram.com/mr_web_guy",
-    github: "https://github.com/your-username",
+    // TODO: update linkedin with a real profile URL
+    github: "https://github.com/Muhamad-Afraz",
     linkedin: "https://linkedin.com/in/your-username",
   },
 };

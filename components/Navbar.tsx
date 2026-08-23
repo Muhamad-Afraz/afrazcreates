@@ -6,17 +6,19 @@ import { site } from "@/data/site";
 
 const links = [
   { id: "about", label: "About" },
+  { id: "technologies", label: "Technologies" },
   { id: "projects", label: "Projects" },
-  { id: "education", label: "Education" },
   { id: "contact", label: "Contact" },
 ];
 
 export default function Navbar({
   activeId,
   onNavigate,
+  hide = false,
 }: {
   activeId: string;
   onNavigate: (id: string) => void;
+  hide?: boolean;
 }) {
   const [open, setOpen] = useState(false);
 
@@ -25,8 +27,16 @@ export default function Navbar({
       initial={{ opacity: 0, y: -14 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 2.4, duration: 0.6, ease: "easeOut" }}
-      className="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-bg/70 backdrop-blur-md"
+      className="fixed inset-x-0 top-0 z-50"
     >
+      <motion.div
+        animate={{ y: hide ? "-110%" : "0%", opacity: hide ? 0 : 1 }}
+        transition={{ duration: 0.45, ease: "easeInOut" }}
+        aria-hidden={hide}
+        className={`border-b border-white/5 bg-bg/40 backdrop-blur-md ${
+          hide ? "pointer-events-none" : ""
+        }`}
+      >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <a
           href="#home"
@@ -137,6 +147,7 @@ export default function Navbar({
           </motion.nav>
         )}
       </AnimatePresence>
+      </motion.div>
     </motion.header>
   );
 }
