@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { motion } from "framer-motion";
 
 const GLYPHS = "@#$%&*!?/<>[]{}()01";
@@ -170,8 +170,22 @@ function DecodeStage({ enabled }: { enabled: boolean }) {
 
 const SESSION_KEY = "afraz-intro-seen";
 
+const emptySubscribe = () => () => {};
+
 export default function Preloader() {
-  const [mounted, setMounted] = useState(false);
+  const isClient = useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false,
+  );
+  // Capture once on the first client render (before any effects run),
+  // so marking the session key below never flips this mid-animation.
+  const [alreadySeen] = useState(
+    () =>
+      typeof window !== "undefined" &&
+      sessionStorage.getItem(SESSION_KEY) !== null,
+  );
+  const mounted = isClient && !alreadySeen;
   const [stage, setStage] = useState(0);
   const [gone, setGone] = useState(false);
   const [reduced] = useState(
@@ -181,9 +195,7 @@ export default function Preloader() {
   );
 
   useEffect(() => {
-    if (sessionStorage.getItem(SESSION_KEY)) return;
     sessionStorage.setItem(SESSION_KEY, "1");
-    setMounted(true);
   }, []);
 
   useEffect(() => {

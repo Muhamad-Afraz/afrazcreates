@@ -16,9 +16,12 @@ type TechCardProps = {
   isMain: boolean;
   tiltMax: number;
   badge?: StickerBadge;
-  onPromote: () => void;
+  onPromote?: () => void;
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
+  className?: string;
+  wrapperClassName?: string;
+  innerClassName?: string;
 };
 
 export default function TechCard({
@@ -31,6 +34,9 @@ export default function TechCard({
   onPromote,
   onMouseEnter,
   onMouseLeave,
+  className = "",
+  wrapperClassName = "",
+  innerClassName = "",
 }: TechCardProps) {
   const Icon = techIcons[item.icon] ?? TbVector;
 
@@ -46,19 +52,22 @@ export default function TechCard({
       aria-label={
         isMain
           ? `${item.name}, featured ${badge === "pinned" ? "and pinned — click to resume live rotation" : "in live rotation"}`
-          : `${item.name}, bring to center`
+          : onPromote
+            ? `${item.name}, bring to center`
+            : item.name
       }
-      className={`group pointer-events-auto cursor-pointer rounded-2xl bg-transparent p-0 outline-none focus-visible:outline-2 focus-visible:outline-offset-4 ${
+      className={`group pointer-events-auto rounded-2xl bg-transparent p-0 outline-none focus-visible:outline-2 focus-visible:outline-offset-4 ${
         isMain ? "z-30" : ""
-      }`}
+      } ${onPromote ? "cursor-pointer" : ""} ${className}`}
       style={{ outlineColor: hexAlpha(color, 0.7) }}
     >
-      <TiltCard max={tiltMax} className="rounded-2xl">
+      <TiltCard max={tiltMax} className={`rounded-2xl ${wrapperClassName}`}>
         <div
           className={`relative flex select-none items-center justify-center overflow-hidden rounded-2xl border ${
             isMain
               ? "h-[min(17rem,26svh)] w-[32.5rem] max-w-[calc(100vw-3rem)] sm:h-[min(18.25rem,28svh)] sm:w-[35rem]"
-              : "h-[min(6rem,9.5svh)] w-[12rem] flex-col gap-1.5 sm:h-[min(6.5rem,10.5svh)] sm:w-[13rem]"
+              : (innerClassName ||
+                "h-[min(6rem,9.5svh)] w-[12rem] flex-col gap-1.5 sm:h-[min(6.5rem,10.5svh)] sm:w-[13rem]")
           }`}
           style={{
             background: `linear-gradient(155deg, color-mix(in srgb, ${color} 26%, #070f03) 0%, color-mix(in srgb, ${color} 12%, #070f03) 45%, #060d03 100%)`,

@@ -1,12 +1,14 @@
 "use client";
 
 import { useRef, useState, type ReactNode, type RefObject } from "react";
+import Image from "next/image";
 import {
   motion,
   useMotionValueEvent,
   useScroll,
   useTransform,
   useReducedMotion,
+  type MotionValue,
 } from "framer-motion";
 
 export const TECH_REVEAL_RATIO = 0.93;
@@ -67,25 +69,13 @@ function TitleContent() {
   );
 }
 
-function FlipBackImage() {
+function FaceShade({ opacity }: { opacity: MotionValue<number> }) {
   return (
-    <div className="relative h-full w-full overflow-hidden bg-bg">
-      <div className="absolute inset-0 [transform:scaleX(-1)]">
-        <img
-          src={TECH_FLIP_IMAGE}
-          alt=""
-          draggable={false}
-          className="h-full w-full select-none object-cover"
-        />
-      </div>
-      <div className="absolute inset-0 flex items-center justify-center font-mono text-[10px] uppercase tracking-[0.3em] text-slate-600">
-        drop image · public{TECH_FLIP_IMAGE}
-      </div>
-      <div
-        aria-hidden="true"
-        className="absolute -bottom-32 left-1/2 h-64 w-[36rem] max-w-full -translate-x-1/2 rounded-[50%] bg-primary/10 blur-3xl"
-      />
-    </div>
+    <motion.div
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-black/70 to-transparent"
+      style={{ opacity }}
+    />
   );
 }
 
@@ -99,6 +89,8 @@ export default function TechIntroGate({
   const gateRef = useRef<HTMLDivElement>(null);
   const reducedMotion = useReducedMotion();
   const [sheetBlocking, setSheetBlocking] = useState(true);
+  const [sheetGone, setSheetGone] = useState(false);
+  const [faceFlipped, setFaceFlipped] = useState(false);
 
   const { scrollYProgress } = useScroll({
     container: containerRef,
@@ -114,7 +106,7 @@ export default function TechIntroGate({
   const rotateY = useTransform(scrollYProgress, [0.42, 0.72], [0, 180]);
   const sheetOpacity = useTransform(
     scrollYProgress,
-    [0, 0.72, 0.9, 1],
+    [0, 0.72, 0.82, 1],
     [1, 1, 0, 0]
   );
   const backdropOpacity = useTransform(
@@ -123,19 +115,11 @@ export default function TechIntroGate({
     [0, 0, 1, 1, 0, 0]
   );
   const faceShade = useTransform(scrollYProgress, [0.42, 0.57, 0.72], [0, 0.55, 0]);
-  const frontFaceOpacity = useTransform(
-    scrollYProgress,
-    [0.555, 0.585],
-    [1, 0]
-  );
-  const backFaceOpacity = useTransform(
-    scrollYProgress,
-    [0.555, 0.585],
-    [0, 1]
-  );
 
   useMotionValueEvent(scrollYProgress, "change", (p) => {
     setSheetBlocking(p < 0.7);
+    setSheetGone(p >= 0.82);
+    setFaceFlipped(p >= 0.57);
   });
 
   if (reducedMotion) {
@@ -169,38 +153,47 @@ export default function TechIntroGate({
         <motion.div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 z-10 bg-black"
-          style={{ opacity: backdropOpacity }}
+          style={{ opacity: backdropOpacity, visibility: sheetGone ? "hidden" : "visible" }}
         />
         <div
           className="absolute inset-0 z-20"
           style={{
             perspective: "1600px",
             pointerEvents: sheetBlocking ? "auto" : "none",
+            visibility: sheetGone ? "hidden" : "visible",
           }}
         >
           <motion.div
-            className="relative h-full w-full overflow-hidden bg-bg will-change-transform"
+            className="relative h-full w-full transform-3d"
             style={{ rotateY, scale, opacity: sheetOpacity }}
           >
-            <motion.div
-              className="absolute inset-0"
-              style={{ opacity: frontFaceOpacity }}
+            <div
+              className="absolute inset-0 overflow-hidden bg-bg [backface-visibility:hidden]"
+              style={{ visibility: faceFlipped ? "hidden" : "visible" }}
             >
               <TitleContent />
-            </motion.div>
+              <FaceShade opacity={faceShade} />
+            </div>
 
-            <motion.div
-              className="absolute inset-0"
-              style={{ opacity: backFaceOpacity }}
+            <div
+              className="absolute inset-0 overflow-hidden bg-bg transition-opacity duration-150"
+              style={{ opacity: faceFlipped ? 1 : 0 }}
             >
-              <FlipBackImage />
-            </motion.div>
-
-            <motion.div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-black/70 to-transparent"
-              style={{ opacity: faceShade }}
-            />
+              <Image
+                src={TECH_FLIP_IMAGE}
+                alt=""
+                fill
+                sizes="100vw"
+                priority
+                draggable={false}
+                className="select-none object-cover [transform:scaleX(-1)]"
+              />
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute -bottom-32 left-1/2 h-64 w-[36rem] max-w-full -translate-x-1/2 rounded-[50%] bg-primary/10 blur-3xl"
+              />
+              <FaceShade opacity={faceShade} />
+            </div>
           </motion.div>
         </div>
       </div>

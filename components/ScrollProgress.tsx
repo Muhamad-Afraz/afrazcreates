@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 type ScrollProgressProps = {
   containerRef: React.RefObject<HTMLDivElement | null>;
@@ -8,7 +8,8 @@ type ScrollProgressProps = {
 
 export default function ScrollProgress({ containerRef }: ScrollProgressProps) {
   const barRef = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const visibleRef = useRef(false);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -18,12 +19,14 @@ export default function ScrollProgress({ containerRef }: ScrollProgressProps) {
     const update = () => {
       const { scrollTop, scrollHeight, clientHeight } = container;
       const max = scrollHeight - clientHeight;
-      const pct = max > 0 ? (scrollTop / max) * 100 : 0;
       if (barRef.current) {
-        barRef.current.style.width = `${pct}%`;
+        barRef.current.style.transform = `scaleX(${max > 0 ? scrollTop / max : 0})`;
       }
-      if (!visible && scrollTop > 20) setVisible(true);
-      if (visible && scrollTop <= 20) setVisible(false);
+      const next = scrollTop > 20;
+      if (next !== visibleRef.current) {
+        visibleRef.current = next;
+        if (wrapRef.current) wrapRef.current.style.opacity = next ? "1" : "0";
+      }
     };
 
     const onScroll = () => {
@@ -38,18 +41,19 @@ export default function ScrollProgress({ containerRef }: ScrollProgressProps) {
     container.addEventListener("scroll", onScroll, { passive: true });
     update();
     return () => container.removeEventListener("scroll", onScroll);
-  }, [containerRef, visible]);
+  }, [containerRef]);
 
   return (
     <div
+      ref={wrapRef}
       aria-hidden="true"
       className="pointer-events-none fixed inset-x-0 top-0 z-[100] h-[3px]"
-      style={{ opacity: visible ? 1 : 0, transition: "opacity 0.3s ease" }}
+      style={{ opacity: 0, transition: "opacity 0.3s ease" }}
     >
       <div
         ref={barRef}
-        className="scroll-progress-bar h-full"
-        style={{ width: "0%" }}
+        className="scroll-progress-bar h-full w-full"
+        style={{ transform: "scaleX(0)" }}
       />
     </div>
   );

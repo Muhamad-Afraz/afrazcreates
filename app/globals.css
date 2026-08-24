@@ -70,81 +70,29 @@ section[id] {
   border-radius: 8px;
 }
 
-@property --glow-x-1 {
-  syntax: "<length-percentage>";
-  inherits: false;
-  initial-value: 18%;
-}
-@property --glow-y-1 {
-  syntax: "<length-percentage>";
-  inherits: false;
-  initial-value: 0%;
-}
-@property --glow-x-2 {
-  syntax: "<length-percentage>";
-  inherits: false;
-  initial-value: 85%;
-}
-@property --glow-y-2 {
-  syntax: "<length-percentage>";
-  inherits: false;
-  initial-value: 15%;
-}
-@property --glow-x-3 {
-  syntax: "<length-percentage>";
-  inherits: false;
-  initial-value: 50%;
-}
-@property --glow-y-3 {
-  syntax: "<length-percentage>";
-  inherits: false;
-  initial-value: 110%;
-}
-
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -2;
   pointer-events: none;
-  transition: --section-glow-opacity 1.2s ease, --section-glow-hue 1.2s ease, --section-glow-spread 1.2s ease;
   background:
     radial-gradient(
-      ellipse var(--section-glow-spread) 40% at var(--glow-x-1) var(--glow-y-1),
+      ellipse var(--section-glow-spread) 40% at 18% 0%,
       hsla(var(--section-glow-hue), 70%, 55%, var(--section-glow-opacity)),
       transparent 60%
     ),
     radial-gradient(
-      ellipse 50% 45% at var(--glow-x-2) var(--glow-y-2),
+      ellipse 50% 45% at 85% 15%,
       rgba(190, 242, 100, 0.03),
       transparent 60%
     ),
     radial-gradient(
-      ellipse 60% 50% at var(--glow-x-3) var(--glow-y-3),
+      ellipse 60% 50% at 50% 110%,
       rgba(132, 204, 22, 0.03),
       transparent 60%
     ),
     var(--background);
-  animation: bg-glow-drift 26s ease-in-out infinite alternate;
-}
-
-@keyframes bg-glow-drift {
-  0% {
-    --glow-x-1: 10%;
-    --glow-y-1: -6%;
-    --glow-x-2: 88%;
-    --glow-y-2: 8%;
-    --glow-x-3: 46%;
-    --glow-y-3: 118%;
-  }
-  100% {
-    --glow-x-1: 34%;
-    --glow-y-1: 26%;
-    --glow-x-2: 62%;
-    --glow-y-2: 42%;
-    --glow-x-3: 58%;
-    --glow-y-3: 80%;
-  }
 }
 
 body::after {
@@ -188,8 +136,8 @@ body::after {
   background: conic-gradient(
     from var(--glow-angle, 0deg),
     transparent 0%,
-    rgba(163, 230, 53, 0.6) 10%,
-    rgba(190, 242, 100, 0.8) 20%,
+    var(--glow-c1, rgba(163, 230, 53, 0.6)) 10%,
+    var(--glow-c2, rgba(190, 242, 100, 0.8)) 20%,
     transparent 30%
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -601,8 +549,7 @@ body::after {
   background: linear-gradient(90deg, #a3e635, #bef264);
   box-shadow: 0 0 10px rgba(163, 230, 53, 0.6), 0 0 20px rgba(163, 230, 53, 0.3);
   transform-origin: left;
-  will-change: width;
-  transition: width 0.1s ease-out;
+  will-change: transform;
   position: relative;
 }
 .scroll-progress-bar::after {
@@ -622,7 +569,7 @@ body::after {
     110deg,
     #ffffff 0%,
     #ffffff 40%,
-    #a3e635 50%,
+    var(--shimmer-accent, #a3e635) 50%,
     #ffffff 60%,
     #ffffff 100%
   );
@@ -631,6 +578,32 @@ body::after {
   background-clip: text;
   color: transparent;
   transition: background-position 0.6s ease;
+}
+
+/* ---------- Accent Project Card ---------- */
+
+.accent-card {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.accent-card:hover {
+  border-color: var(--card-edge, rgba(163, 230, 53, 0.4));
+  box-shadow: 0 22px 48px -24px var(--card-shadow, rgba(163, 230, 53, 0.3));
+}
+
+.stack-chip {
+  transition:
+    border-color 0.3s ease,
+    background-color 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.group:hover .stack-chip {
+  transform: translateY(-2px);
 }
 
 /* ---------- Skill Badge Float ---------- */

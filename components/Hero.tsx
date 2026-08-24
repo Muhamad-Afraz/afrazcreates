@@ -1,8 +1,8 @@
 "use client";
 
-import { useCallback, useEffect, useLayoutEffect, useRef, useSyncExternalStore } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
-import { animate, motion, useMotionValue } from "framer-motion";
+import { animate, motion, useMotionValue, useMotionValueEvent } from "framer-motion";
 import type { MouseEvent, ReactNode, RefObject } from "react";
 import type { Variants } from "framer-motion";
 import type Lenis from "lenis";
@@ -126,6 +126,11 @@ export default function Hero({
   const bgDarkOpacity = useMotionValue(0);
   const bgWhiteOpacity = useMotionValue(0);
   const heroOpacity = useMotionValue(1);
+  const [overlayHidden, setOverlayHidden] = useState(false);
+
+  useMotionValueEvent(overlayOpacity, "change", (v) => {
+    setOverlayHidden(v <= 0.001);
+  });
 
   const cancelReveal = useCallback(() => {
     lenisRef?.current?.start();
@@ -310,7 +315,7 @@ export default function Hero({
   const overlay = (
     <motion.div
       className="pointer-events-none fixed inset-0 z-[60] overflow-hidden"
-      style={{ opacity: overlayOpacity }}
+      style={{ opacity: overlayOpacity, visibility: overlayHidden ? "hidden" : "visible" }}
       aria-hidden="true"
     >
       <motion.div

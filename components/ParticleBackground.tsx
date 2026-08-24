@@ -12,10 +12,11 @@ type Particle = {
 };
 
 const COLORS = ["#a3e635", "#84cc16", "#bef264"];
-const LINK_DIST = 120;
+const LINK_DIST = 100;
 const LINK_DIST_SQ = LINK_DIST * LINK_DIST;
 const REPEL_RADIUS = 140;
 const REPEL_RADIUS_SQ = REPEL_RADIUS * REPEL_RADIUS;
+const MAX_PARTICLES = 55;
 
 export default function ParticleBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -44,7 +45,7 @@ export default function ParticleBackground() {
       canvas.style.height = `${height}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      const count = Math.min(90, Math.floor((width * height) / 16000));
+      const count = Math.min(MAX_PARTICLES, Math.floor((width * height) / 16000));
       particles = Array.from({ length: count }, () => ({
         x: Math.random() * width,
         y: Math.random() * height,

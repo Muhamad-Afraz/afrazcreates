@@ -121,7 +121,7 @@ export default function CustomCursor() {
     };
 
     const startLoop = () => {
-      if (running) return;
+      if (running || !hasMoved) return;
       running = true;
       raf = requestAnimationFrame(loop);
     };
@@ -135,11 +135,12 @@ export default function CustomCursor() {
     };
 
     window.addEventListener("mousemove", onMove);
+    window.addEventListener("mousemove", startLoop, { once: true });
     document.addEventListener("visibilitychange", onVisibility);
-    startLoop();
 
     return () => {
       window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("mousemove", startLoop);
       document.removeEventListener("visibilitychange", onVisibility);
       stopLoop();
     };

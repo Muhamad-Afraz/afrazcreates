@@ -11,7 +11,6 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import ScrollProgress from "@/components/ScrollProgress";
-import ParallaxTilt from "@/components/ParallaxTilt";
 
 const SECTION_IDS = ["about", "projects", "contact"] as const;
 
@@ -30,6 +29,8 @@ export default function Home() {
   const lenisRef = useRef<Lenis | null>(null);
   const [activeId, setActiveId] = useState("home");
   const [navHidden, setNavHidden] = useState(false);
+  const [techEpoch, setTechEpoch] = useState(0);
+  const prevActiveRef = useRef<string | null>(null);
 
   const scrollToSection = useCallback((id: string) => {
     const container = containerRef.current;
@@ -123,52 +124,54 @@ export default function Home() {
       return total;
     };
 
+    const GLOW_BY_SECTION: Record<string, [string, string, string]> = {
+      home: ["0.04", "80", "55%"],
+      about: ["0.03", "85", "50%"],
+      projects: ["0.045", "75", "60%"],
+      technologies: ["0.035", "82", "52%"],
+      contact: ["0.05", "70", "65%"],
+    };
+
+    let lastSection = "";
+    const sectionEls = new Map<string, HTMLElement>();
+    for (const id of SECTION_IDS) {
+      const el = container.querySelector<HTMLElement>(`#${id}`);
+      if (el) sectionEls.set(id, el);
+    }
+    const gateEl = container.querySelector<HTMLElement>("#tech-gate");
+    const gateTop = gateEl ? getOffsetTopWithin(gateEl) : -1;
+    const gateBottom = gateEl ? gateTop + gateEl.offsetHeight : -1;
+
     const updateActive = () => {
       const top = container.scrollTop;
       let current = "home";
       for (const id of SECTION_IDS) {
-        const el = container.querySelector<HTMLElement>(`#${id}`);
+        const el = sectionEls.get(id);
         if (el && el.offsetTop - 200 <= top) current = id;
       }
 
-      const gateEl = container.querySelector<HTMLElement>("#tech-gate");
-      if (gateEl) {
-        const gateTop = getOffsetTopWithin(gateEl);
-        if (top >= gateTop && top < gateTop + gateEl.offsetHeight) {
-          current = "technologies";
-        }
+      if (gateEl && top >= gateTop && top < gateBottom) {
+        current = "technologies";
       }
 
-      const root = document.documentElement;
-      switch (current) {
-        case "home":
-          root.style.setProperty("--section-glow-opacity", "0.04");
-          root.style.setProperty("--section-glow-hue", "80");
-          root.style.setProperty("--section-glow-spread", "55%");
-          break;
-        case "about":
-          root.style.setProperty("--section-glow-opacity", "0.03");
-          root.style.setProperty("--section-glow-hue", "85");
-          root.style.setProperty("--section-glow-spread", "50%");
-          break;
-        case "projects":
-          root.style.setProperty("--section-glow-opacity", "0.045");
-          root.style.setProperty("--section-glow-hue", "75");
-          root.style.setProperty("--section-glow-spread", "60%");
-          break;
-        case "technologies":
-          root.style.setProperty("--section-glow-opacity", "0.035");
-          root.style.setProperty("--section-glow-hue", "82");
-          root.style.setProperty("--section-glow-spread", "52%");
-          break;
-        case "contact":
-          root.style.setProperty("--section-glow-opacity", "0.05");
-          root.style.setProperty("--section-glow-hue", "70");
-          root.style.setProperty("--section-glow-spread", "65%");
-          break;
-      }
+      if (current === lastSection) return;
+      lastSection = current;
 
+      const glow = GLOW_BY_SECTION[current];
+      if (glow) {
+        const root = document.documentElement;
+        root.style.setProperty("--section-glow-opacity", glow[0]);
+        root.style.setProperty("--section-glow-hue", glow[1]);
+        root.style.setProperty("--section-glow-spread", glow[2]);
+      }
       setActiveId(current);
+
+      if (prevActiveRef.current === null) {
+        prevActiveRef.current = current;
+      } else if (current !== prevActiveRef.current) {
+        if (current === "technologies") setTechEpoch((e) => e + 1);
+        prevActiveRef.current = current;
+      }
 
       setNavHidden(current === "technologies");
     };
@@ -241,19 +244,17 @@ export default function Home() {
     <>
       <Navbar activeId={activeId} onNavigate={goTo} hide={navHidden} />
       <ScrollProgress containerRef={containerRef} />
-      <ParallaxTilt>
-        <div className="relative h-screen overflow-hidden" style={{ perspective: 1200 }}>
-          <Hero onScrubContainer={(el) => (containerRef.current = el)} onNavigate={goTo} lenisRef={lenisRef}>
-            <About />
+      <div className="h-screen overflow-hidden">
+        <Hero onScrubContainer={(el) => (containerRef.current = el)} onNavigate={goTo} lenisRef={lenisRef}>
+          <About />
             <TechIntroGate containerRef={containerRef}>
-              <Technologies />
+              <Technologies key={techEpoch} />
             </TechIntroGate>
-            <Projects containerRef={containerRef} />
-            <Contact />
-            <Footer onNavigate={goTo} />
-          </Hero>
-        </div>
-      </ParallaxTilt>
+          <Projects containerRef={containerRef} />
+          <Contact />
+          <Footer onNavigate={goTo} />
+        </Hero>
+      </div>
     </>
   );
 }

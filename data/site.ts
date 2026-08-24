@@ -6,6 +6,8 @@ export type Project = {
   status?: "live" | "building" | "planning";
   live?: string;
   code?: string;
+  accent: string;
+  stack: string[];
 };
 
 export type TechCategoryId = "frontend" | "backend" | "ai" | "data" | "tools";
@@ -118,6 +120,8 @@ export const site: SiteData = {
       status: "live",
       live: "https://afrazcreates.vercel.app",
       code: "",
+      accent: "#a3e635",
+      stack: ["nextjs", "typescript", "tailwind"],
     },
     {
       title: "Coffee Shop",
@@ -127,6 +131,8 @@ export const site: SiteData = {
       status: "building",
       live: "",
       code: "",
+      accent: "#22d3ee",
+      stack: ["react", "typescript", "supabase"],
     },
     {
       title: "Project Two",
@@ -136,30 +142,32 @@ export const site: SiteData = {
       status: "planning",
       live: "",
       code: "",
+      accent: "#a78bfa",
+      stack: ["nextjs", "langchain", "postgresql"],
     },
     {
       title: "Project 4",
       description: "Short description of what this project does and why it was built.",
       category: "other",
       tag: "Web App",
-      live: "",
-      code: "",
+      accent: "#fbbf24",
+      stack: ["nodejs", "express", "supabase"],
     },
     {
       title: "Project 5",
       description: "Short description of what this project does and why it was built.",
       category: "other",
       tag: "Creative",
-      live: "",
-      code: "",
+      accent: "#fb7185",
+      stack: ["react", "figma", "vercel"],
     },
     {
       title: "Project 6",
       description: "Short description of what this project does and why it was built.",
       category: "other",
       tag: "Creative",
-      live: "",
-      code: "",
+      accent: "#34d399",
+      stack: ["nextjs", "docker", "git"],
     },
   ],
   // TODO: replace with the URL of your all-projects website
