@@ -52,7 +52,7 @@ export const site: SiteData = {
     { value: 3, suffix: "+", label: "Projects Built" },
     { value: 18, suffix: "+", label: "Tools & Technologies" },
     { value: 3, suffix: "+", label: "Certificates" },
-    { value: 1, suffix: "+", label: "Month of Experience" },
+    { value: 2, suffix: "+", label: "Months of Experience" },
   ],
   techStack: [
     {
