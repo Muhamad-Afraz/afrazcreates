@@ -89,15 +89,6 @@ export const site: SiteData = {
       ],
     },
     {
-      id: "data",
-      label: "Data",
-      color: "#34d399",
-      items: [
-        { name: "VectorDB", icon: "vectordb" },
-        { name: "Embeddings", icon: "embeddings" },
-      ],
-    },
-    {
       id: "tools",
       label: "Tools",
       color: "#fb7185",
@@ -106,6 +97,15 @@ export const site: SiteData = {
         { name: "Vercel", icon: "vercel" },
         { name: "Docker", icon: "docker" },
         { name: "Figma", icon: "figma" },
+      ],
+    },
+    {
+      id: "data",
+      label: "Data",
+      color: "#34d399",
+      items: [
+        { name: "VectorDB", icon: "vectordb" },
+        { name: "Embeddings", icon: "embeddings" },
       ],
     },
   ],

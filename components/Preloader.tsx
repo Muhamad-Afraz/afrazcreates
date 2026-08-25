@@ -253,7 +253,7 @@ export default function Preloader() {
       )}
 
       <motion.p
-        className="mt-10 text-center font-mono text-[10px] uppercase tracking-[0.25em] text-primary sm:hidden"
+        className="mt-22 text-center font-mono text-[10px] uppercase tracking-[0.25em] text-primary sm:hidden"
       >
         Use desktop view<br />for a better experience
       </motion.p>
