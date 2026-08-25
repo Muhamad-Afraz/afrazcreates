@@ -9,7 +9,6 @@ import {
   type TargetAndTransition,
   type Variants,
 } from "framer-motion";
-import SectionReveal from "../ui/SectionReveal";
 import TechCard from "./TechCard";
 import { hexAlpha } from "./icons";
 import { site, type TechCategoryId } from "@/data/site";
@@ -269,52 +268,50 @@ export default function TechnologiesOrbit() {
       id="technologies"
       className="relative mx-auto flex h-svh w-full max-w-6xl flex-col justify-center overflow-hidden px-6 pb-4 pt-4"
     >
-      <SectionReveal variant="fade-scale">
-        <div className="flex shrink-0 items-end justify-between gap-4">
-          <div className="flex select-none flex-col items-start">
-            <span className="font-mono text-xs uppercase tracking-[0.22em] text-slate-300 sm:text-sm">
-              Technologies <span className="text-secondary">&amp;</span>
-            </span>
-            <span className="gradient-text mt-1 text-3xl font-black leading-none tracking-wide sm:text-4xl">
-              Tools
-            </span>
-          </div>
-          <div
-            role="group"
-            aria-label="Filter technologies by category"
-            className="flex flex-wrap gap-2"
-          >
-            {FILTERS.map((f) => {
-              const active = filter === f.id;
-              return (
-                <button
-                  key={f.id}
-                  type="button"
-                  onClick={() => changeFilter(f.id)}
-                  aria-pressed={active}
-                  className={`rounded-md border px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.14em] transition-all duration-300 ${
-                    active
-                      ? ""
-                      : "border-white/10 bg-white/[0.02] text-slate-400 hover:border-white/25 hover:text-white"
-                  }`}
-                  style={
-                    active
-                      ? {
-                          borderColor: hexAlpha(f.color, 0.65),
-                          backgroundColor: hexAlpha(f.color, 0.12),
-                          color: f.color,
-                          boxShadow: `0 0 18px ${hexAlpha(f.color, 0.18)}`,
-                        }
-                      : undefined
-                  }
-                >
-                  {f.label}
-                </button>
-              );
-            })}
-          </div>
+      <div className="flex shrink-0 items-end justify-between gap-4">
+        <div className="flex select-none flex-col items-start">
+          <span className="font-mono text-xs uppercase tracking-[0.22em] text-slate-300 sm:text-sm">
+            Technologies <span className="text-secondary">&amp;</span>
+          </span>
+          <span className="gradient-text mt-1 text-3xl font-black leading-none tracking-wide sm:text-4xl">
+            Tools
+          </span>
         </div>
-      </SectionReveal>
+        <div
+          role="group"
+          aria-label="Filter technologies by category"
+          className="flex flex-wrap gap-2"
+        >
+          {FILTERS.map((f) => {
+            const active = filter === f.id;
+            return (
+              <button
+                key={f.id}
+                type="button"
+                onClick={() => changeFilter(f.id)}
+                aria-pressed={active}
+                className={`rounded-md border px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.14em] transition-all duration-300 ${
+                  active
+                    ? ""
+                    : "border-white/10 bg-white/[0.02] text-slate-400 hover:border-white/25 hover:text-white"
+                }`}
+                style={
+                  active
+                    ? {
+                        borderColor: hexAlpha(f.color, 0.65),
+                        backgroundColor: hexAlpha(f.color, 0.12),
+                        color: f.color,
+                        boxShadow: `0 0 18px ${hexAlpha(f.color, 0.18)}`,
+                      }
+                    : undefined
+                }
+              >
+                {f.label}
+              </button>
+            );
+          })}
+        </div>
+      </div>
 
       <div
         className="relative mx-auto mt-4 min-h-0 w-full max-w-5xl flex-1 select-none sm:mt-5"

@@ -252,6 +252,12 @@ export default function Preloader() {
         <IntroStage leaving={false} />
       )}
 
+      <motion.p
+        className="mt-10 text-center font-mono text-[10px] uppercase tracking-[0.25em] text-primary sm:hidden"
+      >
+        Use desktop view<br />for a better experience
+      </motion.p>
+
       <motion.div
         className="pointer-events-none fixed inset-0 z-[310] bg-white"
         initial={{ opacity: 0 }}

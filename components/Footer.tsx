@@ -116,8 +116,8 @@ export default function Footer({
 }) {
   return (
     <footer className="border-t border-white/5 bg-black/20 pb-[env(safe-area-inset-bottom)] backdrop-blur-sm">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-10">
-        <p className="font-mono text-sm text-slate-500">
+      <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 px-6 py-10 sm:flex-row sm:justify-between">
+        <p className="text-center font-mono text-xs text-slate-500 sm:text-left sm:text-sm">
           © {new Date().getFullYear()}{" "}
           <span className="text-slate-300">{site.name}</span> — ALL RIGHTS RESERVED
         </p>

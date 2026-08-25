@@ -310,7 +310,7 @@ export default function Projects({
   return (
     <section id="projects" className="relative">
       <div ref={wrapRef}>
-        <div className="sticky top-0 flex h-svh flex-col justify-center overflow-hidden pt-24 pb-6 sm:pt-44 sm:pb-10">
+        <div className="sticky top-0 flex h-svh flex-col justify-center overflow-hidden pt-14 pb-6 sm:pt-44 sm:pb-10">
           <header className="mx-auto w-full max-w-6xl px-6">
             <SectionHeading index="04" label="Things I've built" title="Featured" highlight="Projects" />
           </header>
