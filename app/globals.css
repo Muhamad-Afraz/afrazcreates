@@ -120,6 +120,8 @@ body::after {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(6px);
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .glow-border {
@@ -504,7 +506,7 @@ body::after {
 .project-card-glow {
   position: relative;
   overflow: hidden;
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  transition: box-shadow 0.35s ease;
 }
 .project-card-glow::before {
   content: "";
@@ -525,7 +527,6 @@ body::after {
   opacity: 1;
 }
 .project-card-glow:hover {
-  transform: translateY(-4px);
   box-shadow:
     0 8px 30px rgba(163, 230, 53, 0.08),
     0 0 0 1px rgba(163, 230, 53, 0.15);
@@ -586,7 +587,8 @@ body::after {
   border: 1px solid rgba(255, 255, 255, 0.08);
   transition:
     border-color 0.3s ease,
-    box-shadow 0.3s ease;
+    box-shadow 0.3s ease,
+    filter 0.3s ease;
 }
 
 .accent-card:hover {

@@ -43,12 +43,12 @@ export default function TiltCard({
   const py = useMotionValue(0.5);
 
   const rotateX = useSpring(useTransform(py, [0, 1], [max, -max]), {
-    stiffness: 150,
-    damping: 20,
+    stiffness: 200,
+    damping: 25,
   });
   const rotateY = useSpring(useTransform(px, [0, 1], [-max, max]), {
-    stiffness: 150,
-    damping: 20,
+    stiffness: 200,
+    damping: 25,
   });
 
   const glareX = useTransform(px, [0, 1], [0, 100]);
@@ -96,6 +96,7 @@ export default function TiltCard({
         rotateY,
         transformStyle: "preserve-3d",
         perspective: 900,
+        backfaceVisibility: "hidden",
       }}
       className={`group relative ${className}`}
     >

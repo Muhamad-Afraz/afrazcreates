@@ -317,8 +317,8 @@ export default function Projects({
 
           <div
             ref={trackRef}
-            className="mt-5 flex w-max items-stretch gap-6 will-change-transform sm:mt-8"
-            style={{ paddingLeft: TRACK_EDGE, paddingRight: TRACK_EDGE }}
+            className="mt-5 flex w-max items-stretch gap-6 sm:mt-8"
+            style={{ paddingLeft: TRACK_EDGE, paddingRight: TRACK_EDGE, willChange: "transform" }}
           >
             {site.projects.slice(0, 5).map((project, i) => (
               <ProjectPanel
