@@ -172,7 +172,7 @@ export const site: SiteData = {
     },
   ],
   // TODO: replace with the URL of your all-projects website
-  showcaseUrl: "https://example.com",
+  showcaseUrl: "https://afraz-project-hub.vercel.app/",
   socials: {
     email: "kmafraz12@gmail.com",
     instagram: "https://instagram.com/mr_web_guy",
