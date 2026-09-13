@@ -9,12 +9,11 @@ import type Lenis from "lenis";
 import Typewriter from "./ui/Typewriter";
 import MagneticButton from "./ui/MagneticButton";
 import Laptop from "./Laptop";
-import { ArrowUpRightIcon } from "./icons";
 import { site } from "@/data/site";
 
 const container: Variants = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.14, delayChildren: 0.12 } },
+  show: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
 };
 
 const item: Variants = {
@@ -22,17 +21,7 @@ const item: Variants = {
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.75, ease: [0.21, 0.47, 0.32, 0.98] },
-  },
-};
-
-const pill: Variants = {
-  hidden: { opacity: 0, y: 12, scale: 0.94 },
-  show: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: { duration: 0.55, ease: [0.21, 0.47, 0.32, 0.98] },
+    transition: { duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] },
   },
 };
 
@@ -50,43 +39,33 @@ function useIsClient() {
 
 function HeroGrid({
   onExplore,
+  onContact,
 }: {
   onExplore?: (e: MouseEvent<HTMLAnchorElement>) => void;
+  onContact?: (e: MouseEvent<HTMLAnchorElement>) => void;
 }) {
   return (
     <>
       <div className="text-left">
         <motion.p
-          variants={pill}
-          className="mb-7 inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.03] px-3.5 py-1.5 font-mono text-[11px] uppercase tracking-[0.28em] text-slate-300 sm:mb-8"
+          variants={item}
+          className="mb-6 font-mono text-sm uppercase tracking-[0.35em] text-primary sm:text-base"
         >
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-60" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-primary shadow-[0_0_8px_#a3e635]" />
-          </span>
-          Available for new projects
+          Hello, world! I&apos;m
         </motion.p>
 
         <motion.h1
           variants={item}
-          className="text-6xl font-black leading-none tracking-tight sm:text-7xl xl:text-8xl"
+          className="text-5xl font-extrabold leading-tight sm:text-6xl lg:text-7xl xl:text-8xl"
         >
-          <span className="gradient-text drop-shadow-[0_0_32px_rgba(163,230,53,0.35)]">
-            {site.name.toUpperCase()}
+          <span className="gradient-text drop-shadow-[0_0_30px_rgba(163,230,53,0.35)]">
+            {site.name}
           </span>
         </motion.h1>
 
-        <motion.h2
-          variants={item}
-          className="mt-5 max-w-3xl text-3xl font-extrabold leading-tight text-slate-100 sm:mt-6 sm:text-4xl lg:text-5xl"
-        >
-          I design &amp; build web experiences{" "}
-          <span className="gradient-text">from scratch.</span>
-        </motion.h2>
-
         <motion.div
           variants={item}
-          className="mt-6 flex h-9 items-center font-mono text-lg text-slate-400 sm:mt-7 sm:text-xl"
+          className="mt-7 flex h-12 items-center font-mono text-xl text-slate-300 sm:text-3xl"
         >
           <span className="mr-2 text-secondary">&gt;</span>
           <Typewriter words={site.roles} />
@@ -94,30 +73,29 @@ function HeroGrid({
 
         <motion.p
           variants={item}
-          className="mt-7 max-w-xl text-base leading-relaxed text-slate-400 sm:mt-8 sm:text-lg"
+          className="mt-8 max-w-xl text-base leading-relaxed text-slate-400 sm:text-lg"
         >
           {site.tagline}
         </motion.p>
 
-        <motion.div variants={item} className="mt-11 flex flex-wrap items-center gap-4 sm:mt-12 sm:gap-5">
+        <motion.div variants={item} className="mt-12 flex flex-wrap items-center gap-5">
           <MagneticButton
-            href="#projects"
-            onClick={onExplore}
+            href="#contact"
+            onClick={onContact}
             className="btn-neon rounded-xl px-8 py-3.5 font-semibold"
           >
-            View my work
+            Get in touch
           </MagneticButton>
           <MagneticButton
-            href={site.showcaseUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="btn-neon-2 inline-flex items-center gap-2 rounded-xl px-8 py-3.5 font-semibold"
+            href="#about"
+            onClick={onExplore}
+            className="btn-neon-2 rounded-xl px-8 py-3.5 font-semibold"
           >
-            Project Hub
-            <ArrowUpRightIcon className="h-4 w-4" />
+            Explore my work
           </MagneticButton>
         </motion.div>
       </div>
+
     </>
   );
 }
@@ -301,7 +279,12 @@ export default function Hero({
 
   const onExplore: (e: MouseEvent<HTMLAnchorElement>) => void = (e) => {
     e.preventDefault();
-    onNavigate("projects");
+    onNavigate("about");
+  };
+
+  const onContact: (e: MouseEvent<HTMLAnchorElement>) => void = (e) => {
+    e.preventDefault();
+    onNavigate("contact");
   };
 
   useEffect(() => {
@@ -373,21 +356,14 @@ export default function Hero({
               id="home"
               className="sticky top-0 flex h-dvh items-center overflow-hidden px-6 py-16 sm:py-28"
             >
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-0"
-              >
-                <div className="absolute -left-40 top-1/4 h-[34rem] w-[34rem] -translate-y-1/2 rounded-full bg-primary/[0.05] blur-[120px]" />
-                <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-bg/70 to-transparent" />
-              </div>
               <motion.div
                 style={{ opacity: heroOpacity }}
                 variants={container}
                 initial="hidden"
                 animate="show"
-                className="relative mx-auto grid w-full max-w-6xl items-center gap-14"
+                className="mx-auto grid w-full max-w-6xl items-center gap-14"
               >
-                <HeroGrid onExplore={onExplore} />
+                <HeroGrid onExplore={onExplore} onContact={onContact} />
               </motion.div>
             </section>
           </div>
