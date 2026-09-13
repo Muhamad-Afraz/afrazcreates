@@ -6,6 +6,7 @@ export type Project = {
   status?: "live" | "building" | "planning";
   live?: string;
   code?: string;
+  featured?: boolean;
   accent: string;
   stack: string[];
 };
@@ -24,12 +25,18 @@ export type TechCategory = {
   items: TechItem[];
 };
 
+export type Highlight = {
+  title: string;
+  text: string;
+};
+
 export type SiteData = {
   name: string;
   firstName: string;
   tagline: string;
   roles: string[];
   about: string[];
+  highlights: Highlight[];
   stats: { value: number; suffix: string; label: string }[];
   techStack: TechCategory[];
   projects: Project[];
@@ -41,12 +48,25 @@ export const site: SiteData = {
   name: "Afraz",
   firstName: "Afraz",
   tagline:
-    "A developer who loves turning ideas into fast, accessible and delightfully interactive web experiences.",
-  roles: ["Web Developer", "Creative Designs", "UI/UX Designer"],
+    "A developer who turns ideas into fast, interactive and welcoming web experiences.",
+  roles: ["Web Developer", "Creative Designer", "UI/UX Focused"],
   about: [
-    "Hi, I'm Afraz — a developer who believes websites should feel alive. I build web apps that don't just work, but feel great to use: smooth animations, snappy interactions, and clean, thoughtful code under the hood.",
-    "I care about the entire journey — from the first wireframe sketch to the final deployment. I love collaborating, shipping fast, and obsessing over the little details most people never notice (and that's exactly the point).",
-    "When I'm not coding, you'll find me exploring new tech, experimenting with generative art, or building something just because I can.",
+    "I build websites from scratch — design, code, deploy. The kind that load fast, feel responsive, and are fun to use.",
+    "Every project is a chance to explore a new idea, obsess over the details, and ship something polished.",
+  ],
+  highlights: [
+    {
+      title: "Build from scratch",
+      text: "Design → code → deploy. Responsible for every layer.",
+    },
+    {
+      title: "Design + development",
+      text: "Interfaces that look good and work properly — together.",
+    },
+    {
+      title: "Experimentation",
+      text: "Projects exist to explore new ideas and technologies.",
+    },
   ],
   stats: [
     { value: 3, suffix: "+", label: "Projects Built" },
@@ -110,65 +130,53 @@ export const site: SiteData = {
     },
   ],
   projects: [
-    // TODO: replace placeholder projects below with real ones (title, description, live URL, code URL)
-    {
-      title: "My Portfolio",
-      description:
-        "My personal portfolio about me, my creations and my skills — designed to showcase what I do and how I think as a developer.",
-      category: "personal",
-      tag: "Portfolio",
-      status: "live",
-      live: "https://afrazcreates.vercel.app",
-      code: "",
-      accent: "#a3e635",
-      stack: ["nextjs", "typescript", "tailwind"],
-    },
-    {
-      title: "Coffee Shop",
-      description: "A modern coffee shop website designed with a clean interface, smooth interactions, and a warm, inviting experience.",
-      category: "other",
-      tag: "Web App",
-      status: "live",
-      live: "https://housecoffee.vercel.app/",
-      code: "",
-      accent: "#b45309",
-      stack: ["react", "typescript", "supabase"],
-    },
     {
       title: "Nexus 2027",
       description:
-        "A futuristic event platform featuring project showcases, speakers, schedules, venue exploration, and registration.",
+        "A high-end event platform for a fictional technology conference — speakers, schedules, venue exploration and registration in one fluid experience.",
       category: "other",
-      tag: "Creative",
+      tag: "Event Platform",
       status: "live",
       live: "https://nexus2027.vercel.app",
       code: "",
+      featured: true,
       accent: "#a78bfa",
-      stack: ["nextjs", "langchain", "postgresql"],
+      stack: ["nextjs", "typescript", "tailwind", "postgresql"],
     },
     {
-      title: "Project 4",
-      description: "Short description of what this project does and why it was built.",
+      title: "HouseCoffee",
+      description:
+        "A premium coffee brand site with a warm, editorial feel — menu, story and loyalty woven into one seamless brand experience.",
+      category: "business",
+      tag: "Brand Site",
+      status: "live",
+      live: "https://housecoffee.vercel.app/",
+      code: "",
+      featured: true,
+      accent: "#b45309",
+      stack: ["react", "typescript", "tailwind", "supabase"],
+    },
+    {
+      title: "Project-Hub",
+      description:
+        "My central archive of projects — every experiment, tool and release in one searchable hub.",
+      category: "personal",
+      tag: "Archive",
+      status: "live",
+      live: "https://afraz-project-hub.vercel.app/",
+      code: "",
+      accent: "#22d3ee",
+      stack: ["nextjs", "typescript", "supabase", "vercel"],
+    },
+    {
+      title: "Pothole Filler",
+      description:
+        "A civic-tech concept for reporting and tracking potholes — turning complaints into a visible, actionable map.",
       category: "other",
-      tag: "Web App",
+      tag: "Concept",
+      status: "building",
       accent: "#fbbf24",
       stack: ["nodejs", "express", "supabase"],
-    },
-    {
-      title: "Project 5",
-      description: "Short description of what this project does and why it was built.",
-      category: "other",
-      tag: "Creative",
-      accent: "#fb7185",
-      stack: ["react", "figma", "vercel"],
-    },
-    {
-      title: "Project 6",
-      description: "Short description of what this project does and why it was built.",
-      category: "other",
-      tag: "Creative",
-      accent: "#34d399",
-      stack: ["nextjs", "docker", "git"],
     },
   ],
   // TODO: replace with the URL of your all-projects website
