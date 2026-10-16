@@ -123,7 +123,7 @@ export default function TechnologiesCompact() {
     <section
       ref={sectionRef}
       id="technologies"
-      className="relative mx-auto flex min-h-[100svh] w-full max-w-6xl flex-col justify-center overflow-hidden px-4 pb-5 pt-6 sm:px-6 sm:pb-4 sm:pt-4"
+      className="relative mx-auto flex h-full min-h-[100svh] w-full max-w-6xl flex-col justify-center overflow-hidden px-4 pb-[calc(env(safe-area-inset-bottom,0px)+1.25rem)] pt-[calc(env(safe-area-inset-top,0px)+1.5rem)] sm:px-6 sm:pb-4 sm:pt-4"
     >
       <div className="flex shrink-0 flex-col items-center gap-3 text-center">
         <div className="flex select-none flex-col items-center">

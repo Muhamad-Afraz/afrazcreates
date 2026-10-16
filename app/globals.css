@@ -687,16 +687,22 @@ body::after {
    The section is pinned to the viewport height while it is
    scroll-scrubbed horizontally, so on tall phones the default
    300px-tall cards left most of the screen empty. On phones the
-   card now fills the space left under the heading, and all of
-   its contents scale together with the card height (via a size
-   container + cqh), so the layout fits every phone height
-   (iPhone, Samsung, …) without leaving the screen half empty.
-   Everything here is scoped to the projects section, so the
-   desktop / tablet layout is untouched.
+   card now fills the space under the heading, and all of its
+   contents scale together with the card (via a size container,
+   bounded by both cqh and cqw), so every phone shape fits without
+   overflowing or leaving the screen half empty. The top padding
+   also reserves room for the fixed navbar. Everything here is
+   scoped to the projects section, so the desktop / tablet layout
+   is untouched.
    ============================================================ */
 @media (max-width: 639.98px) {
+  /* Clearance for the fixed navbar (73px tall on phones) plus a
+     gap. Before this the content was vertically centred with a small
+     card, so the heading always landed well below the navbar; now
+     that the section fills the viewport the heading sits at the top
+     of the sticky box, so we reserve the navbar height here. */
   .pc-stage {
-    padding-top: 3.5rem;
+    padding-top: 5.5rem;
     padding-bottom: 1rem;
   }
 
@@ -721,13 +727,15 @@ body::after {
     padding: 0;
   }
 
-  /* One font-size drives the whole card. It is a share of the
-     card's own height (cqh), so every phone gets content sized
-     proportionally to the space available. */
+  /* One font-size drives the whole card. It is bounded by BOTH the
+     card's height (cqh) and width (cqw): height alone breaks on
+     narrow-but-tall phones, where a height-sized font wraps the
+     description into enough lines to overflow the card. Taking the
+     smaller of the two keeps content proportional on every shape. */
   .pc-stage .pc-body {
     justify-content: center;
     padding: 0.95em;
-    font-size: clamp(0.82rem, 4.7cqh, 2rem);
+    font-size: clamp(0.82rem, min(4.7cqh, 8.5cqw), 2rem);
   }
 
   .pc-stage .pc-ghost {
@@ -833,14 +841,20 @@ body::after {
 }
 
 /* ---------- Hero: phone-first viewport fit ----------
-   Scoped strictly to phones. Desktop (>=640px, the Tailwind sm:
-   breakpoint and up) is intentionally left untouched. ---------- */
+   Scoped strictly to phones. Desktop (>=640px with a mouse / tall
+   window) is intentionally left untouched. env(safe-area-inset-*) is
+   0px on desktop, so those additions are mobile-only in practice.
 
-@media (max-width: 639.98px) {
+   Tier A: portrait phones + any landscape/short phone
+           (even distribution so the hero fills any viewport height)
+   Tier B: short screens (phones in landscape, Safari with URL bars)
+   Tier C: ultra-short screens (cover displays, landscape + URL bars) */
+
+@media (max-width: 639.98px), (pointer: coarse) and (max-height: 560px) {
   #home.hero-section {
     align-items: stretch;
-    padding-top: clamp(4.5rem, 12dvh, 8rem);
-    padding-bottom: clamp(3rem, 8dvh, 6rem);
+    padding-top: calc(env(safe-area-inset-top, 0px) + clamp(4.75rem, 14dvh, 9rem));
+    padding-bottom: clamp(2.25rem, 6dvh, 5rem);
   }
 
   .hero-content {
@@ -891,42 +905,38 @@ body::after {
   }
 }
 
-/* Hero on phones in landscape / very short viewports (any width).
-   Touch-only, so short desktop windows are unaffected. */
-
 @media (pointer: coarse) and (max-height: 560px) {
   #home.hero-section {
-    padding-top: clamp(3.75rem, 16dvh, 4.5rem);
-    padding-bottom: clamp(2rem, 10dvh, 3rem);
+    padding-top: calc(env(safe-area-inset-top, 0px) + clamp(4.5rem, 13dvh, 6rem));
+    padding-bottom: clamp(1.75rem, 6dvh, 3.5rem);
   }
+}
 
-  .hero-text {
-    gap: 0.25rem;
-  }
-
-  .hero-eyebrow {
-    font-size: clamp(0.75rem, 2.4dvh, 0.875rem);
+@media (pointer: coarse) and (max-height: 400px) {
+  #home.hero-section {
+    padding-top: calc(env(safe-area-inset-top, 0px) + clamp(4.7rem, 22dvh, 5rem));
+    padding-bottom: clamp(1.75rem, 10dvh, 3rem);
   }
 
   .hero-title {
-    font-size: clamp(2.25rem, min(9vw, 11dvh), 3.25rem);
+    font-size: clamp(2rem, min(14vw, 11dvh), 3.25rem);
   }
 
   .hero-roles {
-    font-size: clamp(1.1rem, min(5vw, 5.5dvh), 1.6rem);
+    font-size: clamp(1.1rem, min(5.5vw, 5.5dvh), 1.6rem);
   }
 
   .hero-tagline {
-    font-size: clamp(0.9rem, min(3.4vw, 4dvh), 1.1rem);
-    line-height: 1.5;
+    font-size: clamp(0.85rem, min(3.6vw, 4dvh), 1.1rem);
+    line-height: 1.45;
   }
 
   .hero-actions {
-    gap: clamp(0.6rem, 2dvh, 1rem);
+    gap: clamp(0.5rem, 2dvh, 0.9rem);
   }
 
   .hero-actions a {
-    padding: clamp(0.6rem, 3.4dvh, 0.85rem) clamp(1.25rem, 5vw, 1.75rem);
-    font-size: clamp(0.9rem, 3.4vw, 1.05rem);
+    padding: clamp(0.55rem, 3.2dvh, 0.85rem) clamp(1.15rem, 4.5vw, 1.75rem);
+    font-size: clamp(0.85rem, 3.2vw, 1.05rem);
   }
 }

@@ -33,7 +33,7 @@ export default function Navbar({
         animate={{ y: hide ? "-110%" : "0%", opacity: hide ? 0 : 1 }}
         transition={{ duration: 0.45, ease: "easeInOut" }}
         aria-hidden={hide}
-        className={`border-b border-white/5 bg-bg/40 backdrop-blur-md ${
+        className={`border-b border-white/5 bg-bg/40 pt-[env(safe-area-inset-top)] backdrop-blur-md ${
           hide ? "pointer-events-none" : ""
         }`}
       >

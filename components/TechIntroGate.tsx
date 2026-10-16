@@ -147,7 +147,7 @@ export default function TechIntroGate({
 
   return (
     <div ref={gateRef} id="tech-gate" className="relative h-[330vh]">
-      <div className="sticky top-0 h-screen overflow-hidden">
+      <div className="sticky top-0 h-dvh overflow-hidden">
         <div className="absolute inset-0 z-0">{children}</div>
 
         <motion.div
