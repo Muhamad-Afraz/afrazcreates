@@ -681,3 +681,252 @@ body::after {
     box-shadow: 0 4px 20px rgba(163, 230, 53, 0.1);
   }
 }
+
+/* ============================================================
+   Projects carousel — phone layout only (< 640px).
+   The section is pinned to the viewport height while it is
+   scroll-scrubbed horizontally, so on tall phones the default
+   300px-tall cards left most of the screen empty. On phones the
+   card now fills the space left under the heading, and all of
+   its contents scale together with the card height (via a size
+   container + cqh), so the layout fits every phone height
+   (iPhone, Samsung, …) without leaving the screen half empty.
+   Everything here is scoped to the projects section, so the
+   desktop / tablet layout is untouched.
+   ============================================================ */
+@media (max-width: 639.98px) {
+  .pc-stage {
+    padding-top: 3.5rem;
+    padding-bottom: 1rem;
+  }
+
+  .pc-stage header > div {
+    margin-bottom: 1rem;
+  }
+
+  .pc-stage .pc-track {
+    margin-top: 1rem;
+    gap: 1rem;
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+
+  .pc-stage .pc-panel {
+    height: auto;
+    width: min(88vw, 23.75rem);
+  }
+
+  .pc-stage .pc-card {
+    container-type: size;
+    padding: 0;
+  }
+
+  /* One font-size drives the whole card. It is a share of the
+     card's own height (cqh), so every phone gets content sized
+     proportionally to the space available. */
+  .pc-stage .pc-body {
+    justify-content: center;
+    padding: 0.95em;
+    font-size: clamp(0.82rem, 4.7cqh, 2rem);
+  }
+
+  .pc-stage .pc-ghost {
+    right: -0.08em;
+    top: -0.4em;
+    font-size: 20cqh;
+  }
+
+  .pc-stage .pc-num {
+    font-size: 0.62em;
+    letter-spacing: 0.26em;
+  }
+
+  .pc-stage .pc-title {
+    margin-top: 0.5em;
+    font-size: 1.4em;
+    line-height: 1.08;
+  }
+
+  .pc-stage .pc-desc {
+    display: block;
+    margin-top: 0.6em;
+    flex: 0 0 auto;
+    font-size: 0.84em;
+    line-height: 1.5;
+  }
+
+  .pc-stage .pc-chips {
+    margin-top: 1em;
+    gap: 0.45em;
+  }
+
+  .pc-stage .pc-chips .stack-chip {
+    gap: 0.35em;
+    padding: 0.32em 0.62em;
+    font-size: 0.62em;
+    border-radius: 0.55em;
+  }
+
+  .pc-stage .pc-chips .stack-chip svg {
+    width: 0.95em;
+    height: 0.95em;
+  }
+
+  .pc-stage .pc-footer {
+    margin-top: 1em;
+    padding-top: 0.8em;
+    gap: 0.75em;
+  }
+
+  .pc-stage .pc-status,
+  .pc-stage .pc-link {
+    gap: 0.35em;
+    font-size: 0.7em;
+  }
+
+  .pc-stage .pc-status svg,
+  .pc-stage .pc-link svg {
+    width: 0.95em;
+    height: 0.95em;
+  }
+
+  /* "View all projects" panel */
+  .pc-stage .pc-all {
+    height: auto;
+    width: min(88vw, 23.75rem);
+    gap: 1.15em;
+    padding: 1.2em;
+    font-size: clamp(0.85rem, 2.9svh, 1.5rem);
+  }
+
+  .pc-stage .pc-all-icon {
+    width: 2.9em;
+    height: 2.9em;
+  }
+
+  .pc-stage .pc-all-icon svg {
+    width: 1.15em;
+    height: 1.15em;
+  }
+
+  .pc-stage .pc-all-title {
+    font-size: 1.35em;
+    line-height: 1.1;
+  }
+
+  .pc-stage .pc-all-sub {
+    margin-top: 0.5em;
+    font-size: 0.72em;
+  }
+
+  .pc-stage .pc-all-btn {
+    gap: 0.45em;
+    padding: 0.5em 1.05em;
+    font-size: 0.62em;
+    letter-spacing: 0.14em;
+  }
+
+  .pc-stage .pc-all-btn svg {
+    width: 0.95em;
+    height: 0.95em;
+  }
+}
+
+/* ---------- Hero: phone-first viewport fit ----------
+   Scoped strictly to phones. Desktop (>=640px, the Tailwind sm:
+   breakpoint and up) is intentionally left untouched. ---------- */
+
+@media (max-width: 639.98px) {
+  #home.hero-section {
+    align-items: stretch;
+    padding-top: clamp(4.5rem, 12dvh, 8rem);
+    padding-bottom: clamp(3rem, 8dvh, 6rem);
+  }
+
+  .hero-content {
+    align-items: stretch;
+    gap: 0;
+    grid-template-rows: minmax(0, 1fr);
+  }
+
+  .hero-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: clamp(0.25rem, 1dvh, 0.75rem);
+  }
+
+  .hero-eyebrow {
+    margin: 0;
+    font-size: clamp(0.875rem, 3.6vw, 1.0625rem);
+  }
+
+  .hero-title {
+    margin: 0;
+    font-size: clamp(2.9rem, min(17vw, 9.5dvh), 5.25rem);
+    line-height: 1.06;
+  }
+
+  .hero-roles {
+    margin: 0;
+    height: 1.6em;
+    font-size: clamp(1.3rem, min(6.8vw, 4.5dvh), 2.375rem);
+    line-height: 1.2;
+  }
+
+  .hero-tagline {
+    margin: 0;
+    font-size: clamp(0.95rem, min(4.5vw, 3.2dvh), 1.3rem);
+    line-height: 1.6;
+  }
+
+  .hero-actions {
+    margin: 0;
+    gap: clamp(0.75rem, 2.2dvh, 1.375rem);
+  }
+
+  .hero-actions a {
+    padding: clamp(0.7rem, 2.3dvh, 1.05rem) clamp(1.35rem, 6vw, 2.1rem);
+    font-size: clamp(0.95rem, 4.2vw, 1.125rem);
+  }
+}
+
+/* Hero on phones in landscape / very short viewports (any width).
+   Touch-only, so short desktop windows are unaffected. */
+
+@media (pointer: coarse) and (max-height: 560px) {
+  #home.hero-section {
+    padding-top: clamp(3.75rem, 16dvh, 4.5rem);
+    padding-bottom: clamp(2rem, 10dvh, 3rem);
+  }
+
+  .hero-text {
+    gap: 0.25rem;
+  }
+
+  .hero-eyebrow {
+    font-size: clamp(0.75rem, 2.4dvh, 0.875rem);
+  }
+
+  .hero-title {
+    font-size: clamp(2.25rem, min(9vw, 11dvh), 3.25rem);
+  }
+
+  .hero-roles {
+    font-size: clamp(1.1rem, min(5vw, 5.5dvh), 1.6rem);
+  }
+
+  .hero-tagline {
+    font-size: clamp(0.9rem, min(3.4vw, 4dvh), 1.1rem);
+    line-height: 1.5;
+  }
+
+  .hero-actions {
+    gap: clamp(0.6rem, 2dvh, 1rem);
+  }
+
+  .hero-actions a {
+    padding: clamp(0.6rem, 3.4dvh, 0.85rem) clamp(1.25rem, 5vw, 1.75rem);
+    font-size: clamp(0.9rem, 3.4vw, 1.05rem);
+  }
+}

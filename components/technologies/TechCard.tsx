@@ -65,7 +65,7 @@ export default function TechCard({
         <div
           className={`relative flex select-none items-center justify-center overflow-hidden rounded-2xl border ${
             isMain
-              ? "h-[min(17rem,26svh)] w-[32.5rem] max-w-[calc(100vw-3rem)] sm:h-[min(18.25rem,28svh)] sm:w-[35rem]"
+              ? "h-[min(17rem,30svh)] w-[32.5rem] max-w-[calc(100vw-2.5rem)] sm:h-[min(18.25rem,28svh)] sm:w-[35rem] sm:max-w-[calc(100vw-3rem)]"
               : (innerClassName ||
                 "h-[min(6rem,9.5svh)] w-[12rem] flex-col gap-1.5 sm:h-[min(6.5rem,10.5svh)] sm:w-[13rem]")
           }`}
@@ -168,14 +168,13 @@ export default function TechCard({
           {!isMain && (
             <>
               <Icon
-                size={24}
-                className="transition-transform duration-300 group-hover:scale-110"
+                className="h-5 w-5 transition-transform duration-300 group-hover:scale-110 sm:h-6 sm:w-6"
                 style={{
                   color,
                   filter: `drop-shadow(0 0 6px ${hexAlpha(color, 0.55)})`,
                 }}
               />
-              <span className="px-2 text-center text-[11px] font-semibold leading-tight text-white sm:text-xs">
+              <span className="w-full truncate px-1 text-center text-[10px] font-semibold leading-tight text-white sm:w-auto sm:px-2 sm:text-xs">
                 {item.name}
               </span>
             </>

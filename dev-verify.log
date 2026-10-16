@@ -1,0 +1,769 @@
+
+> portfolio@0.1.0 dev
+> next dev
+
+▲ Next.js 16.3.0 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.100.147:3000
+✓ Ready in 7.1s
+✓ Running next.config.ts took 434ms
+
+○ Compiling / ...
+ GET / 200 in 4.8s (next.js: 3.8s, application-code: 1051ms)
+ GET / 200 in 208ms (next.js: 27ms, application-code: 181ms)
+ GET / 200 in 336ms (next.js: 20ms, application-code: 315ms)
+ GET / 200 in 227ms (next.js: 12ms, application-code: 215ms)
+ GET / 200 in 250ms (next.js: 21ms, application-code: 229ms)
+ GET / 200 in 214ms (next.js: 13ms, application-code: 201ms)
+ GET / 200 in 178ms (next.js: 16ms, application-code: 162ms)
+ GET / 200 in 239ms (next.js: 14ms, application-code: 225ms)
+ GET / 200 in 258ms (next.js: 25ms, application-code: 233ms)
+ GET / 200 in 209ms (next.js: 20ms, application-code: 190ms)
+ GET / 200 in 272ms (next.js: 21ms, application-code: 251ms)
+ GET / 200 in 195ms (next.js: 21ms, application-code: 174ms)
+ GET / 200 in 222ms (next.js: 27ms, application-code: 194ms)
+ GET / 200 in 303ms (next.js: 24ms, application-code: 279ms)
+ GET / 200 in 190ms (next.js: 7ms, application-code: 183ms)
+ GET / 200 in 203ms (next.js: 28ms, application-code: 175ms)
+ GET / 200 in 362ms (next.js: 16ms, application-code: 346ms)
+ GET / 200 in 186ms (next.js: 20ms, application-code: 166ms)
+ GET / 200 in 224ms (next.js: 23ms, application-code: 201ms)
+ GET / 200 in 485ms (next.js: 18ms, application-code: 467ms)
+ GET / 200 in 280ms (next.js: 215ms, application-code: 65ms)
+[browser] Can't perform a React state update on a component that hasn't mounted yet. This indicates that you have a side-effect in your render function that asynchronously tries to update the component. Move this work to useEffect instead. 
+ GET / 200 in 269ms (next.js: 14ms, application-code: 255ms)
+ GET / 200 in 283ms (next.js: 12ms, application-code: 271ms)
+ GET / 200 in 357ms (next.js: 21ms, application-code: 336ms)
+ GET / 200 in 307ms (next.js: 11ms, application-code: 297ms)
+ GET / 200 in 433ms (next.js: 32ms, application-code: 400ms)
+ GET / 200 in 235ms (next.js: 20ms, application-code: 215ms)
+ GET / 200 in 195ms (next.js: 15ms, application-code: 180ms)
+ GET / 200 in 234ms (next.js: 28ms, application-code: 206ms)
+ GET / 200 in 408ms (next.js: 16ms, application-code: 392ms)
+ GET / 200 in 307ms (next.js: 25ms, application-code: 282ms)
+ GET / 200 in 365ms (next.js: 14ms, application-code: 351ms)
+[browser] Can't perform a React state update on a component that hasn't mounted yet. This indicates that you have a side-effect in your render function that asynchronously tries to update the component. Move this work to useEffect instead. 
+ GET / 200 in 65ms (next.js: 21ms, application-code: 44ms)
+ GET / 200 in 619ms (next.js: 20ms, application-code: 599ms)
+ GET / 200 in 330ms (next.js: 19ms, application-code: 312ms)
+ GET / 200 in 216ms (next.js: 9ms, application-code: 207ms)
+ GET / 200 in 240ms (next.js: 12ms, application-code: 228ms)
+ GET / 200 in 306ms (next.js: 16ms, application-code: 290ms)
+ GET / 200 in 272ms (next.js: 13ms, application-code: 259ms)
+ GET / 200 in 277ms (next.js: 27ms, application-code: 250ms)
+ GET / 200 in 443ms (next.js: 11ms, application-code: 432ms)
+ GET / 200 in 217ms (next.js: 17ms, application-code: 200ms)
+ GET / 200 in 197ms (next.js: 23ms, application-code: 174ms)
+[browser] You have Reduced Motion enabled on your device. Animations may not appear as expected.. For more information and steps for solving, visit https://motion.dev/troubleshooting/reduced-motion-disabled (components/TechIntroGate.tsx:90:41)
+[browser] Uncaught Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HTTPAccessFallbackErrorBoundary pathname="/" notFound={{...}} forbidden={undefined} unauthorized={undefined} ...>
+      <RedirectBoundary>
+        <RedirectErrorBoundary router={{...}}>
+          <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} segmentPath={[...]} ...>
+            <SegmentViewNode type="page" pagePath="page.tsx">
+              <SegmentTrieNode>
+              <ClientPageRoot Component={function Home} serverProvidedParams={{...}}>
+                <Home params={Promise} searchParams={Promise}>
+                  <Navbar>
+                  <ScrollProgress>
+                  <div className="h-screen o...">
+                    <Hero onScrubContainer={function onScrubContainer} onNavigate={function Home.useCallback[goTo]} ...>
+                      <div ref={function ref} className="relative h...">
+                        <div>
+                          <div>
+                          <About>
+                          <TechIntroGate containerRef={{current:null}}>
+                            <div
+-                             id="tech-gate"
+-                             className="relative h-[330vh]"
+                            >
+                              <div
++                               className="flex h-screen flex-col items-center justify-center gap-8 px-6"
+-                               className="sticky top-0 h-screen overflow-hidden"
+                              >
+                                <div
++                                 className="relative px-10 py-12 sm:px-16"
+-                                 className="absolute inset-0 z-0"
+                                >
+                                  <Bracket className="left-0 top...">
++                                   <span
++                                     aria-hidden="true"
++                                     className="pointer-events-none absolute h-5 w-5 border-primary/50 left-0 top-0 b..."
++                                     style={undefined}
++                                   >
+-                                   <section
+-                                     id="technologies"
+-                                     className="relative mx-auto flex h-svh w-full max-w-6xl flex-col justify-center ..."
+-                                   >
+                                  ...
+                              ...
+                          ...
+            ...
+          ...
+
+    at <unknown> (https://react.dev/link/hydration-mismatch)
+    at span (<anonymous>)
+    at Bracket (components/TechIntroGate.tsx:26:5)
+    at TechIntroGate (components/TechIntroGate.tsx:130:13)
+    at Home (app/page.tsx:250:13)
+  24 | }) {
+  25 |   return (
+> 26 |     <span
+     |     ^
+  27 |       aria-hidden="true"
+  28 |       className={`pointer-events-none absolute h-5 w-5 border-primary/50 ${className}`}
+  29 |       style={style}
+[browser] Uncaught Error: Target ref is defined but not hydrated. For more information and steps for solving, visit https://motion.dev/troubleshooting/use-scroll-ref
+    at Set.forEach (<anonymous>)
+ GET / 200 in 376ms (next.js: 17ms, application-code: 359ms)
+[browser] You have Reduced Motion enabled on your device. Animations may not appear as expected.. For more information and steps for solving, visit https://motion.dev/troubleshooting/reduced-motion-disabled (components/TechIntroGate.tsx:90:41)
+[browser] Uncaught Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HTTPAccessFallbackErrorBoundary pathname="/" notFound={{...}} forbidden={undefined} unauthorized={undefined} ...>
+      <RedirectBoundary>
+        <RedirectErrorBoundary router={{...}}>
+          <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} segmentPath={[...]} ...>
+            <SegmentViewNode type="page" pagePath="page.tsx">
+              <SegmentTrieNode>
+              <ClientPageRoot Component={function Home} serverProvidedParams={{...}}>
+                <Home params={Promise} searchParams={Promise}>
+                  <Navbar>
+                  <ScrollProgress>
+                  <div className="h-screen o...">
+                    <Hero onScrubContainer={function onScrubContainer} onNavigate={function Home.useCallback[goTo]} ...>
+                      <div ref={function ref} className="relative h...">
+                        <div>
+                          <div>
+                          <About>
+                          <TechIntroGate containerRef={{current:null}}>
+                            <div
+-                             id="tech-gate"
+-                             className="relative h-[330vh]"
+                            >
+                              <div
++                               className="flex h-screen flex-col items-center justify-center gap-8 px-6"
+-                               className="sticky top-0 h-screen overflow-hidden"
+                              >
+                                <div
++                                 className="relative px-10 py-12 sm:px-16"
+-                                 className="absolute inset-0 z-0"
+                                >
+                                  <Bracket className="left-0 top...">
++                                   <span
++                                     aria-hidden="true"
++                                     className="pointer-events-none absolute h-5 w-5 border-primary/50 left-0 top-0 b..."
++                                     style={undefined}
++                                   >
+-                                   <section
+-                                     id="technologies"
+-                                     className="relative mx-auto flex h-svh w-full max-w-6xl flex-col justify-center ..."
+-                                   >
+                                  ...
+                              ...
+                          ...
+            ...
+          ...
+
+    at <unknown> (https://react.dev/link/hydration-mismatch)
+    at span (<anonymous>)
+    at Bracket (components/TechIntroGate.tsx:26:5)
+    at TechIntroGate (components/TechIntroGate.tsx:130:13)
+    at Home (app/page.tsx:250:13)
+  24 | }) {
+  25 |   return (
+> 26 |     <span
+     |     ^
+  27 |       aria-hidden="true"
+  28 |       className={`pointer-events-none absolute h-5 w-5 border-primary/50 ${className}`}
+  29 |       style={style}
+[browser] Uncaught Error: Target ref is defined but not hydrated. For more information and steps for solving, visit https://motion.dev/troubleshooting/use-scroll-ref
+    at Set.forEach (<anonymous>)
+ GET / 200 in 234ms (next.js: 26ms, application-code: 208ms)
+ GET / 200 in 296ms (next.js: 14ms, application-code: 283ms)
+ GET / 200 in 289ms (next.js: 24ms, application-code: 265ms)
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    ...
+      <div className="absolute" aria-hidden={false} style={{zIndex:10, ...}} ref={function useMotionRef.useCallback}>
+        <div className="-translate...">
+          <TechCard item={{name:"Next.js", ...}} color="#22d3ee" categoryLabel="Frontend" isMain={false} tiltMax={4} ...>
+            <motion.button type="button" onClick={function onPromote} onMouseEnter={undefined} onMouseLeave={undefined} ...>
+              <button type="button" onClick={function onPromote} onMouseEnter={undefined} onMouseLeave={undefined} ...>
+                <TiltCard max={4} className={"rounded-..."}>
+                  <motion.div ref={{current:null}} onMouseMove={function onMouseMove} ...>
+                    <div onMouseMove={function onMouseMove} onMouseLeave={function onMouseLeave} ...>
+                      <div className="relative f..." style={{...}}>
+                        <span>
+                        <SiNextdotjs className="h-1.5 w-1...." style={{color:"#22...", ...}}>
+                          <IconBase attr={{role:"img", ...}} className="h-1.5 w-1...." style={{color:"#22...", ...}}>
+                            <svg
+                              stroke="currentColor"
+                              fill="currentColor"
+                              strokeWidth="0"
+                              role="img"
+                              viewBox="0 0 24 24"
++                             className="h-1.5 w-1.5 sm:h-6 sm:w-6 transition-transform duration-300 group-hover:scale..."
+-                             className="h-1.75 w-1.75 sm:h-6 sm:w-6 transition-transform duration-300 group-hover:sca..."
+                              style={{color:"#22d3ee",filter:"drop-shado..."}}
+                              height="1em"
+                              width="1em"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                        <span
++                         className="px-0.5 text-center text-[3.5px] font-semibold leading-none text-white sm:px-2 sm:..."
+-                         className="px-0.5 text-center text-[4px] font-semibold leading-none text-white sm:px-2 sm:te..."
+                        >
++                         Next.js
+                      ...
+    ...
+      <div className="absolute" aria-hidden={false} style={{zIndex:10, ...}} ref={function useMotionRef.useCallback}>
+        <div className="-translate...">
+          <TechCard item={{name:"Type...", ...}} color="#22d3ee" categoryLabel="Frontend" isMain={false} tiltMax={4} ...>
+            <motion.button type="button" onClick={function onPromote} onMouseEnter={undefined} onMouseLeave={undefined} ...>
+              <button type="button" onClick={function onPromote} onMouseEnter={undefined} onMouseLeave={undefined} ...>
+                <TiltCard max={4} className={"rounded-..."}>
+                  <motion.div ref={{current:null}} onMouseMove={function onMouseMove} ...>
+                    <div onMouseMove={function onMouseMove} onMouseLeave={function onMouseLeave} ...>
+                      <div className="relative f..." style={{...}}>
+                        <span>
+                        <SiTypescript className="h-1.5 w-1...." style={{color:"#22...", ...}}>
+                          <IconBase attr={{role:"img", ...}} className="h-1.5 w-1...." style={{color:"#22...", ...}}>
+                            <svg
+                              stroke="currentColor"
+                              fill="currentColor"
+                              strokeWidth="0"
+                              role="img"
+                              viewBox="0 0 24 24"
++                             className="h-1.5 w-1.5 sm:h-6 sm:w-6 transition-transform duration-300 group-hover:scale..."
+-                             className="h-1.75 w-1.75 sm:h-6 sm:w-6 transition-transform duration-300 group-hover:sca..."
+                              style={{color:"#22d3ee",filter:"drop-shado..."}}
+                              height="1em"
+                              width="1em"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                        <span
++                         className="px-0.5 text-center text-[3.5px] font-semibold leading-none text-white sm:px-2 sm:..."
+-                         className="px-0.5 text-center text-[4px] font-semibold leading-none text-white sm:px-2 sm:te..."
+                        >
++                         TypeScript
+                      ...
+    ...
+      <div className="absolute" aria-hidden={false} style={{zIndex:11, ...}} ref={function useMotionRef.useCallback}>
+        <div className="-translate...">
+          <TechCard item={{name:"Tail...", ...}} color="#22d3ee" categoryLabel="Frontend" isMain={false} tiltMax={4} ...>
+            <motion.button type="button" onClick={function onPromote} onMouseEnter={undefined} onMouseLeave={undefined} ...>
+              <button type="button" onClick={function onPromote} onMouseEnter={undefined} onMouseLeave={undefined} ...>
+                <TiltCard max={4} className={"rounded-..."}>
+                  <motion.div ref={{current:null}} onMouseMove={function onMouseMove} ...>
+                    <div onMouseMove={function onMouseMove} onMouseLeave={function onMouseLeave} ...>
+                      <div className="relative f..." style={{...}}>
+                        <span>
+                        <SiTailwindcss className="h-1.5 w-1...." style={{color:"#22...", ...}}>
+                          <IconBase attr={{role:"img", ...}} className="h-1.5 w-1...." style={{color:"#22...", ...}}>
+                            <svg
+                              stroke="currentColor"
+                              fill="currentColor"
+                              strokeWidth="0"
+                              role="img"
+                              viewBox="0 0 24 24"
++                             className="h-1.5 w-1.5 sm:h-6 sm:w-6 transition-transform duration-300 group-hover:scale..."
+-                             className="h-1.75 w-1.75 sm:h-6 sm:w-6 transition-transform duration-300 group-hover:sca..."
+                              style={{color:"#22d3ee",filter:"drop-shado..."}}
+                              height="1em"
+                              width="1em"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                        <span
++                         className="px-0.5 text-center text-[3.5px] font-semibold leading-none text-white sm:px-2 sm:..."
+-                         className="px-0.5 text-center text-[4px] font-semibold leading-none text-white sm:px-2 sm:te..."
+                        >
++                         Tailwind CSS
+                      ...
+    ...
+      <div className="absolute" aria-hidden={false} style={{zIndex:12, ...}} ref={function useMotionRef.useCallback}>
+        <div className="-translate...">
+          <TechCard item={{name:"Node.js", ...}} color="#fbbf24" categoryLabel="Backend" isMain={false} tiltMax={4} ...>
+            <motion.button type="button" onClick={function onPromote} onMouseEnter={undefined} onMouseLeave={undefined} ...>
+              <button type="button" onClick={function onPromote} onMouseEnter={undefined} onMouseLeave={undefined} ...>
+                <TiltCard max={4} className={"rounded-..."}>
+                  <motion.div ref={{current:null}} onMouseMove={function onMouseMove} ...>
+                    <div onMouseMove={function onMouseMove} onMouseLeave={function onMouseLeave} ...>
+                      <div className="relative f..." style={{...}}>
+                        <span>
+                        <SiNodedotjs className="h-1.5 w-1...." style={{color:"#fb...", ...}}>
+                          <IconBase attr={{role:"img", ...}} className="h-1.5 w-1...." style={{color:"#fb...", ...}}>
+                            <svg
+                              stroke="currentColor"
+                              fill="currentColor"
+                              strokeWidth="0"
+                              role="img"
+                              viewBox="0 0 24 24"
++                             className="h-1.5 w-1.5 sm:h-6 sm:w-6 transition-transform duration-300 group-hover:scale..."
+-                             className="h-1.75 w-1.75 sm:h-6 sm:w-6 transition-transform duration-300 group-hover:sca..."
+                              style={{color:"#fbbf24",filter:"drop-shado..."}}
+                              height="1em"
+                              width="1em"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                        <span
++                         className="px-0.5 text-center text-[3.5px] font-semibold leading-none text-white sm:px-2 sm:..."
+-                         className="px-0.5 text-center text-[4px] font-semibold leading-none text-white sm:px-2 sm:te..."
+                        >
++                         Node.js
+                      ...
+    ...
+      <div className="absolute" aria-hidden={false} style={{zIndex:14, ...}} ref={function useMotionRef.useCallback}>
+        <div className="-translate...">
+          <TechCard item={{name:"Express", ...}} color="#fbbf24" categoryLabel="Backend" isMain={false} tiltMax={4} ...>
+            <motion.button type="button" onClick={function onPromote} onMouseEnter={undefined} onMouseLeave={undefined} ...>
+              <button type="button" onClick={function onPromote} onMouseEnter={undefined} onMouseLeave={undefined} ...>
+                <TiltCard max={4} className={"rounded-..."}>
+                  <motion.div ref={{current:null}} onMouseMove={function onMouseMove} ...>
+                    <div onMouseMove={function onMouseMove} onMouseLeave={function onMouseLeave} ...>
+                      <div className="relative f..." style={{...}}>
+                        <span>
+                        <SiExpress className="h-1.5 w-1...." style={{color:"#fb...", ...}}>
+                          <IconBase attr={{role:"img", ...}} className="h-1.5 w-1...." style={{color:"#fb...", ...}}>
+                            <svg
+                              stroke="currentColor"
+                              fill="currentColor"
+                              strokeWidth="0"
+                              role="img"
+                              viewBox="0 0 24 24"
++                             className="h-1.5 w-1.5 sm:h-6 sm:w-6 transition-transform duration-300 group-hover:scale..."
+-                             className="h-1.75 w-1.75 sm:h-6 sm:w-6 transition-transform duration-300 group-hover:sca..."
+                              style={{color:"#fbbf24",filter:"drop-shado..."}}
+                              height="1em"
+                              width="1em"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                        <span
++                         className="px-0.5 text-center text-[3.5px] font-semibold leading-none text-white sm:px-2 sm:..."
+-                         className="px-0.5 text-center text-[4px] font-semibold leading-none text-white sm:px-2 sm:te..."
+                        >
++                         Express
+                      ...
+    ...
+      <div className="absolute" aria-hidden={false} style={{zIndex:15, ...}} ref={function useMotionRef.useCallback}>
+        <div className="-translate...">
+          <TechCard item={{name:"Supa...", ...}} color="#fbbf24" categoryLabel="Backend" isMain={false} tiltMax={4} ...>
+            <motion.button type="button" onClick={function onPromote} onMouseEnter={undefined} onMouseLeave={undefined} ...>
+              <button type="button" onClick={function onPromote} onMouseEnter={undefined} onMouseLeave={undefined} ...>
+                <TiltCard max={4} className={"rounded-..."}>
+                  <motion.div ref={{current:null}} onMouseMove={function onMouseMove} ...>
+                    <div onMouseMove={function onMouseMove} onMouseLeave={function onMouseLeave} ...>
+                      <div className="relative f..." style={{...}}>
+                        <span>
+                        <SiSupabase className="h-1.5 w-1...." style={{color:"#fb...", ...}}>
+                          <IconBase attr={{role:"img", ...}} className="h-1.5 w-1...." style={{color:"#fb...", ...}}>
+                            <svg
+                              stroke="currentColor"
+                              fill="currentColor"
+                              strokeWidth="0"
+                              role="img"
+                              viewBox="0 0 24 24"
++                             className="h-1.5 w-1.5 sm:h-6 sm:w-6 transition-transform duration-300 group-hover:scale..."
+-                             className="h-1.75 w-1.75 sm:h-6 sm:w-6 transition-transform duration-300 group-hover:sca..."
+                              style={{color:"#fbbf24",filter:"drop-shado..."}}
+                              height="1em"
+                              width="1em"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                        <span
++                         className="px-0.5 text-center text-[3.5px] font-semibold leading-none text-white sm:px-2 sm:..."
+-                         className="px-0.5 text-center text-[4px] font-semibold leading-none text-white sm:px-2 sm:te..."
+                        >
++                         Supabase
+                      ...
+    ...
+      <div className="absolute" aria-hidden={false} style={{zIndex:16, ...}} ref={function useMotionRef.useCallback}>
+        <div className="-translate...">
+          <TechCard item={{name:"Post...", ...}} color="#fbbf24" categoryLabel="Backend" isMain={false} tiltMax={4} ...>
+            <motion.button type="button" onClick={function onPromote} onMouseEnter={undefined} onMouseLeave={undefined} ...>
+              <button type="button" onClick={function onPromote} onMouseEnter={undefined} onMouseLeave={undefined} ...>
+                <TiltCard max={4} className={"rounded-..."}>
+                  <motion.div ref={{current:null}} onMouseMove={function onMouseMove} ...>
+                    <div onMouseMove={function onMouseMove} onMouseLeave={function onMouseLeave} ...>
+                      <div className="relative f..." style={{...}}>
+                        <span>
+                        <SiPostgresql className="h-1.5 w-1...." style={{color:"#fb...", ...}}>
+                          <IconBase attr={{role:"img", ...}} className="h-1.5 w-1...." style={{color:"#fb...", ...}}>
+                            <svg
+                              stroke="currentColor"
+                              fill="currentColor"
+                              strokeWidth="0"
+                              role="img"
+                              viewBox="0 0 24 24"
++                             className="h-1.5 w-1.5 sm:h-6 sm:w-6 transition-transform duration-300 group-hover:scale..."
+-                             className="h-1.75 w-1.75 sm:h-6 sm:w-6 transition-transform duration-300 group-hover:sca..."
+                              style={{color:"#fbbf24",filter:"drop-shado..."}}
+                              height="1em"
+                              width="1em"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                        <span
++                         className="px-0.5 text-center text-[3.5px] font-semibold leading-none text-white sm:px-2 sm:..."
+-                         className="px-0.5 text-center text-[4px] font-semibold leading-none text-white sm:px-2 sm:te..."
+                        >
++                         PostgreSQL
+                      ...
+    ...
+      <div className="absolute" aria-hidden={false} style={{zIndex:17, ...}} ref={function useMotionRef.useCallback}>
+        <div className="-translate...">
+          <TechCard item={{name:"Lang...", ...}} color="#a78bfa" categoryLabel={"AI & Agents"} isMain={false} tiltMax={4} ...>
+            <motion.button type="button" onClick={function onPromote} onMouseEnter={undefined} onMouseLeave={undefined} ...>
+              <button type="button" onClick={function onPromote} onMouseEnter={undefined} onMouseLeave={undefined} ...>
+                <TiltCard max={4} className={"rounded-..."}>
+                  <motion.div ref={{current:null}} onMouseMove={function onMouseMove} ...>
+                    <div onMouseMove={function onMouseMove} onMouseLeave={function onMouseLeave} ...>
+                      <div className="relative f..." style={{...}}>
+                        <span>
+                        <SiLanggraph className="h-1.5 w-1...." style={{color:"#a7...", ...}}>
+                          <IconBase attr={{role:"img", ...}} className="h-1.5 w-1...." style={{color:"#a7...", ...}}>
+                            <svg
+                              stroke="currentColor"
+                              fill="currentColor"
+                              strokeWidth="0"
+                              role="img"
+                              viewBox="0 0 24 24"
++                             className="h-1.5 w-1.5 sm:h-6 sm:w-6 transition-transform duration-300 group-hover:scale..."
+-                             className="h-1.75 w-1.75 sm:h-6 sm:w-6 transition-transform duration-300 group-hover:sca..."
+                              style={{color:"#a78bfa",filter:"drop-shado..."}}
+                              height="1em"
+                              width="1em"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                        <span
++                         className="px-0.5 text-center text-[3.5px] font-semibold leading-none text-white sm:px-2 sm:..."
+-                         className="px-0.5 text-center text-[4px] font-semibold leading-none text-white sm:px-2 sm:te..."
+                        >
++                         LangGraph
+                      ...
+    ...
+      <div className="absolute" aria-hidden={false} style={{zIndex:18, ...}} ref={function useMotionRef.useCallback}>
+        <div className="-translate...">
+          <TechCard item={{name:"Lang...", ...}} color="#a78bfa" categoryLabel={"AI & Agents"} isMain={false} tiltMax={4} ...>
+            <motion.button type="button" onClick={function onPromote} onMouseEnter={undefined} onMouseLeave={undefined} ...>
+              <button type="button" onClick={function onPromote} onMouseEnter={undefined} onMouseLeave={undefined} ...>
+                <TiltCard max={4} className={"rounded-..."}>
+                  <motion.div ref={{current:null}} onMouseMove={function onMouseMove} ...>
+                    <div onMouseMove={function onMouseMove} onMouseLeave={function onMouseLeave} ...>
+                      <div className="relative f..." style={{...}}>
+                        <span>
+                        <SiLangchain className="h-1.5 w-1...." style={{color:"#a7...", ...}}>
+                          <IconBase attr={{role:"img", ...}} className="h-1.5 w-1...." style={{color:"#a7...", ...}}>
+                            <svg
+                              stroke="currentColor"
+                              fill="currentColor"
+                              strokeWidth="0"
+                              role="img"
+                              viewBox="0 0 24 24"
++                             className="h-1.5 w-1.5 sm:h-6 sm:w-6 transition-transform duration-300 group-hover:scale..."
+-                             className="h-1.75 w-1.75 sm:h-6 sm:w-6 transition-transform duration-300 group-hover:sca..."
+                              style={{color:"#a78bfa",filter:"drop-shado..."}}
+                              height="1em"
+                              width="1em"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                        <span
++                         className="px-0.5 text-center text-[3.5px] font-semibold leading-none text-white sm:px-2 sm:..."
+-                         className="px-0.5 text-center text-[4px] font-semibold leading-none text-white sm:px-2 sm:te..."
+                        >
++                         LangChain
+                      ...
+    ...
+      <div className="absolute" aria-hidden={false} style={{zIndex:18, ...}} ref={function useMotionRef.useCallback}>
+        <div className="-translate...">
+          <TechCard item={{name:"Mult...", ...}} color="#a78bfa" categoryLabel={"AI & Agents"} isMain={false} tiltMax={4} ...>
+            <motion.button type="button" onClick={function onPromote} onMouseEnter={undefined} onMouseLeave={undefined} ...>
+              <button type="button" onClick={function onPromote} onMouseEnter={undefined} onMouseLeave={undefined} ...>
+                <TiltCard max={4} className={"rounded-..."}>
+                  <motion.div ref={{current:null}} onMouseMove={function onMouseMove} ...>
+                    <div onMouseMove={function onMouseMove} onMouseLeave={function onMouseLeave} ...>
+                      <div className="relative f..." style={{...}}>
+                        <span>
+                        <RiRobot2Fill className="h-1.5 w-1...." style={{color:"#a7...", ...}}>
+                          <IconBase attr={{viewBox:"0...", ...}} className="h-1.5 w-1...." style={{color:"#a7...", ...}}>
+                            <svg
+                              stroke="currentColor"
+                              fill="currentColor"
+                              strokeWidth="0"
+                              viewBox="0 0 24 24"
++                             className="h-1.5 w-1.5 sm:h-6 sm:w-6 transition-transform duration-300 group-hover:scale..."
+-                             className="h-1.75 w-1.75 sm:h-6 sm:w-6 transition-transform duration-300 group-hover:sca..."
+                              style={{color:"#a78bfa",filter:"drop-shado..."}}
+                              height="1em"
+                              width="1em"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                        <span
++                         className="px-0.5 text-center text-[3.5px] font-semibold leading-none text-white sm:px-2 sm:..."
+-                         className="px-0.5 text-center text-[4px] font-semibold leading-none text-white sm:px-2 sm:te..."
+                        >
++                         Multi-Agent AI
+                      ...
+    ...
+      <div className="absolute" aria-hidden={false} style={{zIndex:17, ...}} ref={function useMotionRef.useCallback}>
+        <div className="-translate...">
+          <TechCard item={{name:"RAG", ...}} color="#a78bfa" categoryLabel={"AI & Agents"} isMain={false} tiltMax={4} ...>
+            <motion.button type="button" onClick={function onPromote} onMouseEnter={undefined} onMouseLeave={undefined} ...>
+              <button type="button" onClick={function onPromote} onMouseEnter={undefined} onMouseLeave={undefined} ...>
+                <TiltCard max={4} className={"rounded-..."}>
+                  <motion.div ref={{current:null}} onMouseMove={function onMouseMove} ...>
+                    <div onMouseMove={function onMouseMove} onMouseLeave={function onMouseLeave} ...>
+                      <div className="relative f..." style={{...}}>
+                        <span>
+                        <TbDatabaseSearch className="h-1.5 w-1...." style={{color:"#a7...", ...}}>
+                          <IconBase attr={{viewBox:"0...", ...}} className="h-1.5 w-1...." style={{color:"#a7...", ...}}>
+                            <svg
+                              stroke="currentColor"
+                              fill="none"
+                              strokeWidth="2"
+                              viewBox="0 0 24 24"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
++                             className="h-1.5 w-1.5 sm:h-6 sm:w-6 transition-transform duration-300 group-hover:scale..."
+-                             className="h-1.75 w-1.75 sm:h-6 sm:w-6 transition-transform duration-300 group-hover:sca..."
+                              style={{color:"#a78bfa",filter:"drop-shado..."}}
+                              height="1em"
+                              width="1em"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                        <span
++                         className="px-0.5 text-center text-[3.5px] font-semibold leading-none text-white sm:px-2 sm:..."
+-                         className="px-0.5 text-center text-[4px] font-semibold leading-none text-white sm:px-2 sm:te..."
+                        >
++                         RAG
+                      ...
+    ...
+      <div className="absolute" aria-hidden={false} style={{zIndex:16, ...}} ref={function useMotionRef.useCallback}>
+        <div className="-translate...">
+          <TechCard item={{name:"Git", ...}} color="#fb7185" categoryLabel="Tools" isMain={false} tiltMax={4} ...>
+            <motion.button type="button" onClick={function onPromote} onMouseEnter={undefined} onMouseLeave={undefined} ...>
+              <button type="button" onClick={function onPromote} onMouseEnter={undefined} onMouseLeave={undefined} ...>
+                <TiltCard max={4} className={"rounded-..."}>
+                  <motion.div ref={{current:null}} onMouseMove={function onMouseMove} ...>
+                    <div onMouseMove={function onMouseMove} onMouseLeave={function onMouseLeave} ...>
+                      <div className="relative f..." style={{...}}>
+                        <span>
+                        <SiGit className="h-1.5 w-1...." style={{color:"#fb...", ...}}>
+                          <IconBase attr={{role:"img", ...}} className="h-1.5 w-1...." style={{color:"#fb...", ...}}>
+                            <svg
+                              stroke="currentColor"
+                              fill="currentColor"
+                              strokeWidth="0"
+                              role="img"
+                              viewBox="0 0 24 24"
++                             className="h-1.5 w-1.5 sm:h-6 sm:w-6 transition-transform duration-300 group-hover:scale..."
+-                             className="h-1.75 w-1.75 sm:h-6 sm:w-6 transition-transform duration-300 group-hover:sca..."
+                              style={{color:"#fb7185",filter:"drop-shado..."}}
+                              height="1em"
+                              width="1em"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                        <span
++                         className="px-0.5 text-center text-[3.5px] font-semibold leading-none text-white sm:px-2 sm:..."
+-                         className="px-0.5 text-center text-[4px] font-semibold leading-none text-white sm:px-2 sm:te..."
+                        >
++                         Git
+                      ...
+    ...
+      <div className="absolute" aria-hidden={false} style={{zIndex:15, ...}} ref={function useMotionRef.useCallback}>
+        <div className="-translate...">
+          <TechCard item={{name:"Vercel", ...}} color="#fb7185" categoryLabel="Tools" isMain={false} tiltMax={4} ...>
+            <motion.button type="button" onClick={function onPromote} onMouseEnter={undefined} onMouseLeave={undefined} ...>
+              <button type="button" onClick={function onPromote} onMouseEnter={undefined} onMouseLeave={undefined} ...>
+                <TiltCard max={4} className={"rounded-..."}>
+                  <motion.div ref={{current:null}} onMouseMove={function onMouseMove} ...>
+                    <div onMouseMove={function onMouseMove} onMouseLeave={function onMouseLeave} ...>
+                      <div className="relative f..." style={{...}}>
+                        <span>
+                        <SiVercel className="h-1.5 w-1...." style={{color:"#fb...", ...}}>
+                          <IconBase attr={{role:"img", ...}} className="h-1.5 w-1...." style={{color:"#fb...", ...}}>
+                            <svg
+                              stroke="currentColor"
+                              fill="currentColor"
+                              strokeWidth="0"
+                              role="img"
+                              viewBox="0 0 24 24"
++                             className="h-1.5 w-1.5 sm:h-6 sm:w-6 transition-transform duration-300 group-hover:scale..."
+-                             className="h-1.75 w-1.75 sm:h-6 sm:w-6 transition-transform duration-300 group-hover:sca..."
+                              style={{color:"#fb7185",filter:"drop-shado..."}}
+                              height="1em"
+                              width="1em"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                        <span
++                         className="px-0.5 text-center text-[3.5px] font-semibold leading-none text-white sm:px-2 sm:..."
+-                         className="px-0.5 text-center text-[4px] font-semibold leading-none text-white sm:px-2 sm:te..."
+                        >
++                         Vercel
+                      ...
+    ...
+      <div className="absolute" aria-hidden={false} style={{zIndex:14, ...}} ref={function useMotionRef.useCallback}>
+        <div className="-translate...">
+          <TechCard item={{name:"Docker", ...}} color="#fb7185" categoryLabel="Tools" isMain={false} tiltMax={4} ...>
+            <motion.button type="button" onClick={function onPromote} onMouseEnter={undefined} onMouseLeave={undefined} ...>
+              <button type="button" onClick={function onPromote} onMouseEnter={undefined} onMouseLeave={undefined} ...>
+                <TiltCard max={4} className={"rounded-..."}>
+                  <motion.div ref={{current:null}} onMouseMove={function onMouseMove} ...>
+                    <div onMouseMove={function onMouseMove} onMouseLeave={function onMouseLeave} ...>
+                      <div className="relative f..." style={{...}}>
+                        <span>
+                        <SiDocker className="h-1.5 w-1...." style={{color:"#fb...", ...}}>
+                          <IconBase attr={{role:"img", ...}} className="h-1.5 w-1...." style={{color:"#fb...", ...}}>
+                            <svg
+                              stroke="currentColor"
+                              fill="currentColor"
+                              strokeWidth="0"
+                              role="img"
+                              viewBox="0 0 24 24"
++                             className="h-1.5 w-1.5 sm:h-6 sm:w-6 transition-transform duration-300 group-hover:scale..."
+-                             className="h-1.75 w-1.75 sm:h-6 sm:w-6 transition-transform duration-300 group-hover:sca..."
+                              style={{color:"#fb7185",filter:"drop-shado..."}}
+                              height="1em"
+                              width="1em"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                        <span
++                         className="px-0.5 text-center text-[3.5px] font-semibold leading-none text-white sm:px-2 sm:..."
+-                         className="px-0.5 text-center text-[4px] font-semibold leading-none text-white sm:px-2 sm:te..."
+                        >
++                         Docker
+                      ...
+    ...
+      <div className="absolute" aria-hidden={false} style={{zIndex:12, ...}} ref={function useMotionRef.useCallback}>
+        <div className="-translate...">
+          <TechCard item={{name:"Figma", ...}} color="#fb7185" categoryLabel="Tools" isMain={false} tiltMax={4} ...>
+            <motion.button type="button" onClick={function onPromote} onMouseEnter={undefined} onMouseLeave={undefined} ...>
+              <button type="button" onClick={function onPromote} onMouseEnter={undefined} onMouseLeave={undefined} ...>
+                <TiltCard max={4} className={"rounded-..."}>
+                  <motion.div ref={{current:null}} onMouseMove={function onMouseMove} ...>
+                    <div onMouseMove={function onMouseMove} onMouseLeave={function onMouseLeave} ...>
+                      <div className="relative f..." style={{...}}>
+                        <span>
+                        <SiFigma className="h-1.5 w-1...." style={{color:"#fb...", ...}}>
+                          <IconBase attr={{role:"img", ...}} className="h-1.5 w-1...." style={{color:"#fb...", ...}}>
+                            <svg
+                              stroke="currentColor"
+                              fill="currentColor"
+                              strokeWidth="0"
+                              role="img"
+                              viewBox="0 0 24 24"
++                             className="h-1.5 w-1.5 sm:h-6 sm:w-6 transition-transform duration-300 group-hover:scale..."
+-                             className="h-1.75 w-1.75 sm:h-6 sm:w-6 transition-transform duration-300 group-hover:sca..."
+                              style={{color:"#fb7185",filter:"drop-shado..."}}
+                              height="1em"
+                              width="1em"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                        <span
++                         className="px-0.5 text-center text-[3.5px] font-semibold leading-none text-white sm:px-2 sm:..."
+-                         className="px-0.5 text-center text-[4px] font-semibold leading-none text-white sm:px-2 sm:te..."
+                        >
++                         Figma
+                      ...
+    ...
+      <div className="absolute" aria-hidden={false} style={{zIndex:11, ...}} ref={function useMotionRef.useCallback}>
+        <div className="-translate...">
+          <TechCard item={{name:"Vect...", ...}} color="#34d399" categoryLabel="Data" isMain={false} tiltMax={4} ...>
+            <motion.button type="button" onClick={function onPromote} onMouseEnter={undefined} onMouseLeave={undefined} ...>
+              <button type="button" onClick={function onPromote} onMouseEnter={undefined} onMouseLeave={undefined} ...>
+                <TiltCard max={4} className={"rounded-..."}>
+                  <motion.div ref={{current:null}} onMouseMove={function onMouseMove} ...>
+                    <div onMouseMove={function onMouseMove} onMouseLeave={function onMouseLeave} ...>
+                      <div className="relative f..." style={{...}}>
+                        <span>
+                        <TbDatabase className="h-1.5 w-1...." style={{color:"#34...", ...}}>
+                          <IconBase attr={{viewBox:"0...", ...}} className="h-1.5 w-1...." style={{color:"#34...", ...}}>
+                            <svg
+                              stroke="currentColor"
+                              fill="none"
+                              strokeWidth="2"
+                              viewBox="0 0 24 24"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
++                             className="h-1.5 w-1.5 sm:h-6 sm:w-6 transition-transform duration-300 group-hover:scale..."
+-                             className="h-1.75 w-1.75 sm:h-6 sm:w-6 transition-transform duration-300 group-hover:sca..."
+                              style={{color:"#34d399",filter:"drop-shado..."}}
+                              height="1em"
+                              width="1em"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                        <span
++                         className="px-0.5 text-center text-[3.5px] font-semibold leading-none text-white sm:px-2 sm:..."
+-                         className="px-0.5 text-center text-[4px] font-semibold leading-none text-white sm:px-2 sm:te..."
+                        >
++                         VectorDB
+                      ...
+    ...
+      <div className="absolute" aria-hidden={false} style={{zIndex:10, ...}} ref={function useMotionRef.useCallback}>
+        <div className="-translate...">
+          <TechCard item={{name:"Embe...", ...}} color="#34d399" categoryLabel="Data" isMain={false} tiltMax={4} ...>
+            <motion.button type="button" onClick={function onPromote} onMouseEnter={undefined} onMouseLeave={undefined} ...>
+              <button type="button" onClick={function onPromote} onMouseEnter={undefined} onMouseLeave={undefined} ...>
+                <TiltCard max={4} className={"rounded-..."}>
+                  <motion.div ref={{current:null}} onMouseMove={function onMouseMove} ...>
+                    <div onMouseMove={function onMouseMove} onMouseLeave={function onMouseLeave} ...>
+                      <div className="relative f..." style={{...}}>
+                        <span>
+                        <TbVector className="h-1.5 w-1...." style={{color:"#34...", ...}}>
+                          <IconBase attr={{viewBox:"0...", ...}} className="h-1.5 w-1...." style={{color:"#34...", ...}}>
+                            <svg
+                              stroke="currentColor"
+                              fill="none"
+                              strokeWidth="2"
+                              viewBox="0 0 24 24"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
++                             className="h-1.5 w-1.5 sm:h-6 sm:w-6 transition-transform duration-300 group-hover:scale..."
+-                             className="h-1.75 w-1.75 sm:h-6 sm:w-6 transition-transform duration-300 group-hover:sca..."
+                              style={{color:"#34d399",filter:"drop-shado..."}}
+                              height="1em"
+                              width="1em"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                        <span
++                         className="px-0.5 text-center text-[3.5px] font-semibold leading-none text-white sm:px-2 sm:..."
+-                         className="px-0.5 text-center text-[4px] font-semibold leading-none text-white sm:px-2 sm:te..."
+                        >
++                         Embeddings
+                      ...
+ 
+ GET / 200 in 221ms (next.js: 20ms, application-code: 201ms)
+ GET / 200 in 201ms (next.js: 20ms, application-code: 181ms)
+ GET / 200 in 292ms (next.js: 14ms, application-code: 278ms)

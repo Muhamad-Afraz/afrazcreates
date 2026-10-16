@@ -123,10 +123,10 @@ export default function TechnologiesCompact() {
     <section
       ref={sectionRef}
       id="technologies"
-      className="relative mx-auto flex h-svh w-full max-w-6xl flex-col justify-center overflow-hidden px-6 pb-4 pt-4"
+      className="relative mx-auto flex min-h-[100svh] w-full max-w-6xl flex-col justify-center overflow-hidden px-4 pb-5 pt-6 sm:px-6 sm:pb-4 sm:pt-4"
     >
       <div className="flex shrink-0 flex-col items-center gap-3 text-center">
-        <div className="flex select-none flex-col items-start">
+        <div className="flex select-none flex-col items-center">
           <span className="font-mono text-xs uppercase tracking-[0.22em] text-slate-300 sm:text-sm">
             Technologies <span className="text-secondary">&amp;</span>
           </span>
@@ -171,7 +171,7 @@ export default function TechnologiesCompact() {
       </div>
 
       <div
-        className="relative mx-auto mt-4 min-h-0 w-full max-w-5xl flex-1 select-none sm:mt-5"
+        className="relative mx-auto mt-4 min-h-[220px] w-full max-w-5xl flex-1 select-none sm:mt-5 sm:min-h-0"
         style={{ perspective: "1400px" }}
       >
         <AnimatePresence mode="wait" initial={false}>
@@ -232,12 +232,12 @@ export default function TechnologiesCompact() {
               animate="idle"
               exit="exit"
             >
-              <div className="flex flex-wrap content-center justify-center gap-2">
+              <div className="grid h-full w-full auto-rows-fr grid-cols-4 gap-2 px-0.5 min-[480px]:grid-cols-5">
                 {ALL_ITEMS.map((item) => (
                   <motion.div
                     key={item.name}
                     variants={cellVariants}
-                    className="h-16 w-[calc(25%-6px)]"
+                    className="h-full w-full"
                   >
                     <TechCard
                       item={item}
@@ -247,7 +247,7 @@ export default function TechnologiesCompact() {
                       tiltMax={reducedMotion ? 0 : 4}
                       className="block h-full w-full"
                       wrapperClassName="h-full"
-                      innerClassName="h-full w-full flex-col gap-1"
+                      innerClassName="h-full w-full flex-col gap-1 sm:gap-1.5"
                     />
                   </motion.div>
                 ))}

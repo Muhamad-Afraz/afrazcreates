@@ -46,17 +46,17 @@ function HeroGrid({
 }) {
   return (
     <>
-      <div className="text-left">
+      <div className="hero-text text-left">
         <motion.p
           variants={item}
-          className="mb-6 font-mono text-sm uppercase tracking-[0.35em] text-primary sm:text-base"
+          className="hero-eyebrow mb-6 font-mono text-sm uppercase tracking-[0.35em] text-primary sm:text-base"
         >
           Hello, world! I&apos;m
         </motion.p>
 
         <motion.h1
           variants={item}
-          className="text-5xl font-extrabold leading-tight sm:text-6xl lg:text-7xl xl:text-8xl"
+          className="hero-title text-5xl font-extrabold leading-tight sm:text-6xl lg:text-7xl xl:text-8xl"
         >
           <span className="gradient-text drop-shadow-[0_0_30px_rgba(163,230,53,0.35)]">
             {site.name}
@@ -65,7 +65,7 @@ function HeroGrid({
 
         <motion.div
           variants={item}
-          className="mt-7 flex h-12 items-center font-mono text-xl text-slate-300 sm:text-3xl"
+          className="hero-roles mt-7 flex h-12 items-center font-mono text-xl text-slate-300 sm:text-3xl"
         >
           <span className="mr-2 text-secondary">&gt;</span>
           <Typewriter words={site.roles} />
@@ -73,12 +73,12 @@ function HeroGrid({
 
         <motion.p
           variants={item}
-          className="mt-8 max-w-xl text-base leading-relaxed text-slate-400 sm:text-lg"
+          className="hero-tagline mt-8 max-w-xl text-base leading-relaxed text-slate-400 sm:text-lg"
         >
           {site.tagline}
         </motion.p>
 
-        <motion.div variants={item} className="mt-12 flex flex-wrap items-center gap-5">
+        <motion.div variants={item} className="hero-actions mt-12 flex flex-wrap items-center gap-5">
           <MagneticButton
             href="#contact"
             onClick={onContact}
@@ -354,14 +354,14 @@ export default function Hero({
           <div className="relative h-[300vh]">
             <section
               id="home"
-              className="sticky top-0 flex h-dvh items-center overflow-hidden px-6 py-16 sm:py-28"
+              className="hero-section sticky top-0 flex h-dvh items-center overflow-hidden px-6 py-16 sm:py-28"
             >
               <motion.div
                 style={{ opacity: heroOpacity }}
                 variants={container}
                 initial="hidden"
                 animate="show"
-                className="mx-auto grid w-full max-w-6xl items-center gap-14"
+                className="hero-content mx-auto grid w-full max-w-6xl items-center gap-14"
               >
                 <HeroGrid onExplore={onExplore} onContact={onContact} />
               </motion.div>
