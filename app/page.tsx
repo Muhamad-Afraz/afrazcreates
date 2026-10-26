@@ -138,9 +138,10 @@ export default function Home() {
       const el = container.querySelector<HTMLElement>(`#${id}`);
       if (el) sectionEls.set(id, el);
     }
-    const gateEl = container.querySelector<HTMLElement>("#tech-gate");
-    const gateTop = gateEl ? getOffsetTopWithin(gateEl) : -1;
-    const gateBottom = gateEl ? gateTop + gateEl.offsetHeight : -1;
+
+    const getTechRangeEl = () =>
+      container.querySelector<HTMLElement>("#tech-gate") ??
+      container.querySelector<HTMLElement>("#technologies");
 
     const updateActive = () => {
       const top = container.scrollTop;
@@ -150,8 +151,12 @@ export default function Home() {
         if (el && el.offsetTop - 200 <= top) current = id;
       }
 
-      if (gateEl && top >= gateTop && top < gateBottom) {
-        current = "technologies";
+      const techRangeEl = getTechRangeEl();
+      if (techRangeEl) {
+        const techTop = getOffsetTopWithin(techRangeEl);
+        if (top >= techTop && top < techTop + techRangeEl.offsetHeight) {
+          current = "technologies";
+        }
       }
 
       if (current === lastSection) return;
